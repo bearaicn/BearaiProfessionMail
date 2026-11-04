@@ -2,6 +2,7 @@
 ## Title: 熊智专业邮寄助手 / BearAI Profession Mail
 ## Notes: 专业材料邮寄助手（由玩家在原生邮箱发送）
 ## Author: BearAI
+## X-License: MIT
 ## Version: 0.3.2
 ## IconTexture: Interface\AddOns\BearaiProfessionMail\Media\Logo.tga
 ## SavedVariables: BearaiProfessionMailDB

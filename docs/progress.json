@@ -5,8 +5,8 @@
   "status": "implemented-awaiting-in-game-validation",
   "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever"] },
   "clients": [
-    { "folder": "D:\\Games\\World of Warcraft\\_classic_era_", "version": "1.15.9.70576", "interface": 11509 },
-    { "folder": "D:\\Games\\World of Warcraft\\_forever_", "version": "1.60.1.70755", "interface": 16001 }
+    { "folder": "_classic_era_", "version": "1.15.9.70576", "interface": 11509 },
+    { "folder": "_forever_", "version": "1.60.1.70755", "interface": 16001 }
   ],
   "filesCreated": [
     ".gitignore", ".gitattributes", "BearaiProfessionMail.toc", "Core/Init.lua", "Core/Compatibility.lua", "Core/Database.lua",
@@ -17,7 +17,8 @@
     "tests/mock.lua", "tests/behavior.lua", "tests/features.lua", "package.json", "package-lock.json", "README.md",
     "docs/PROGRESS.md", "docs/TESTING.md", "docs/progress.json", "config/clients.json", "docs/VERSIONING.md", "docs/UI-REDESIGN.md",
     "config/assets.json", "scripts/Prepare-Logo.ps1", "Media/logo-bear-mail-v1.png", "Media/Logo.tga", "docs/assets/readme-banner.png",
-    "README.en.md", "docs/assets/readme-hero.jpg"
+    "README.en.md", "docs/assets/readme-hero.jpg", "LICENSE", "CHANGELOG.md", "docs/releases/v0.3.2.md",
+    "scripts/Package.ps1", "scripts/Test-Packages.ps1", "scripts/Publish-GitHub.ps1"
   ],
   "implemented": [
     "账号共享且客户端隔离的数据存储", "当前角色及专业自动记录", "其他账号角色手动增改删",
@@ -54,8 +55,10 @@
       "installedBytesIncludingManifest": 124260,
       "inGameValidation": "pending"
     },
-    "inGameLoad": "not-tested-for-0.3.2",
-    "inGameVisualLayout": "not-tested-for-0.3.2",
+    "classicEraInGameValidation": "verified-by-user-for-classic-era-1.15.9",
+    "foreverInGameValidation": "pending",
+    "inGameLoad": "verified-by-user-classic-era",
+    "inGameVisualLayout": "user-reported-usable-classic-era",
     "previousVersionEvidence": "user-screenshot-confirms-0.1.0-visible-and-reports-layout-issues",
     "inGameNativeAttachmentDrag": "not-tested",
     "inGameProtectedOperations": "not-tested",
@@ -66,13 +69,13 @@
     "材料种子表非完整配方库，尚未覆盖无限服专有材料",
     "经典技能列表专业名称仅简体中文和英文",
     "仅整堆拖拽，未实现拆分数量",
-    "0.3.0 的实际视觉、设置页、双击和右击附件操作待游戏验证",
+    "经典旧世用户已反馈可用，未声明所有边界场景均覆盖",
     "不同 WoW 账号不自动共享数据，未登录角色不能离线刷新",
     "窗口移动位置当前不跨次保存，重新展开会重新定位",
-    "当前版本的游戏行为和兼容性需实测"
+    "无限服兼容性待实测"
   ],
   "nextSteps": [
-    "0.3.2 已部署至经典旧世，重启后按 docs/TESTING.md 验证透明 LOGO、设置页及附件交互",
+    "发布 v0.3.2 Classic Era，发行附件仅包含已获用户验证的经典旧世安装包",
     "记录 /bpm diag 与真实错误，修复后重新进行定向测试",
     "在无限服逐项复验兼容层和附件拖拽",
     "按实际物品 ID 继续核实及补充材料映射"

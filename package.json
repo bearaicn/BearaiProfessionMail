@@ -1,6 +1,7 @@
 {
   "name": "bearai-profession-mail-validation",
   "private": true,
+  "license": "MIT",
   "version": "0.1.0",
   "scripts": { "test": "node scripts/test.cjs" },
   "devDependencies": { "fengari": "0.1.5", "luaparse": "0.3.1" }

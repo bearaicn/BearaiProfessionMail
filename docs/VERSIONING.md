@@ -36,8 +36,14 @@ Hardcore 指经典旧世的部署目标；是否为硬核角色及具体规则�
 
 ## 部署追踪和发布
 
+每次发行必须更新 README.md 与 README.en.md 的“最新发行版与更新”、CHANGELOG.md 及 docs/releases/v版本号.md，再从干净提交创建新的附注标签 v版本号。已公开标签不移动、不覆盖；修复产生新版本标签。GitHub／Gitee 同步推送同一 Tag，Release 元数据与附件不随 Git 自动同步，需要分别创建。
+
+发布打包：`scripts/Package.ps1` 从 TOC 和资源白名单生成两套最小 ZIP，包含 MIT LICENSE、安装说明及发布来源记录，输出到 .tmp/releases/v版本号；`scripts/Test-Packages.ps1` 验证目录、Interface、版本、源码哈希与 SHA256SUMS。干净提交是正式打包前提，-AllowDirty 仅供本地验证。未完成游戏验收时必须标注测试发行版／prerelease。
+
+发行可按客户端分别验收和分发。当前 v0.3.2 已由用户确认经典旧世可用，正式发行目标仅为 Classic Era 1.15.9 / Interface 11509；无限服不因共享源码被视为已验证，本次不发布其安装附件。Package.ps1 与 Test-Packages.ps1 默认 Hardcore，可通过 -Client 指定其他目标；发布时只上传已验收目标的包与对应校验文件。公开 README 面向玩家，不包含本机绝对路径和开发过程。
+
 每次实际部署写入目标插件目录的 `deployment.json`，记录插件版本、目标 Interface、最近观察客户端版本、时间、Git 提交、工作区是否含未提交改动以及部署文件 SHA256。它是来源记录，不参与插件加载；`inGameValidation` 固定从 pending 开始，部署成功不等于游戏测试成功。
 
-开发中可部署含未提交改动的版本用于调试，但正式发布应从干净提交产生。两个客户端分别记录测试状态；只通过经典旧世时，不宣称无限服通过。正式发布通过后再打 `v0.1.0` 等 Git 标签，发布包分别命名为 `BearaiProfessionMail-0.1.0-era.zip` 与 `BearaiProfessionMail-0.1.0-forever.zip`。目前未生成发布包或正式发布标签。
+开发中可部署含未提交改动的版本用于调试，但正式发布应从干净提交产生。客户端分别记录测试状态，只通过经典旧世时不宣称无限服通过。首发标签为 `v0.3.2`，附件为 `BearaiProfessionMail-0.3.2-era.zip` 与 SHA256SUMS.txt；无限服验证后另行发行，不移动已公开标签。
 
 客户端更新流程：只读检查路径和版本 → 更新 clients.json 与 TOC → 运行模拟测试及部署测试 → 指定客户端部署 → 游戏验收并记录实际 build 与结果。若 API 改动，只修改相关兼容实现和必要的数据，不从另一客户端的成功结果推断兼容。
