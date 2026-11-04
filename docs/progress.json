@@ -61,7 +61,7 @@
     "inGameProtectedOperations": "not-tested",
     "inGameMailDelivery": "not-tested"
   },
-  "git": { "initialized": true, "branch": "main", "commitCreated": true, "remoteConfigured": true, "remote": "https://github.com/bearaicn/BearaiProfessionMail.git", "strategy": "shared-main-with-client-configs" },
+  "git": { "initialized": true, "branch": "main", "commitCreated": true, "remoteConfigured": true, "remote": "https://github.com/bearaicn/BearaiProfessionMail.git", "giteeRemote": "https://gitee.com/bearaicn/BearaiProfessionMail.git", "originPushUrls": ["https://github.com/bearaicn/BearaiProfessionMail.git", "https://gitee.com/bearaicn/BearaiProfessionMail.git"], "strategy": "shared-main-with-client-configs" },
   "limitations": [
     "材料种子表非完整配方库，尚未覆盖无限服专有材料",
     "经典技能列表专业名称仅简体中文和英文",

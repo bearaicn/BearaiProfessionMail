@@ -6,6 +6,14 @@
 
 用户指定托管地址为 https://github.com/bearaicn/BearaiProfessionMail.git，使用 origin 和 main。提交前核对仓库、分支、远端和改动范围，禁止强推或覆盖已有历史。
 
+## 双远端同步
+
+- GitHub：`origin` 拉取地址为 https://github.com/bearaicn/BearaiProfessionMail.git。
+- Gitee：额外远端 `gitee` 指向 https://gitee.com/bearaicn/BearaiProfessionMail.git。
+- 本地 `origin` 配置两个 pushurl，分别为上述 GitHub 和 Gitee 地址；正常执行 `git push origin main`（或 main 上的 `git push`）会依次推送同一提交到两边。
+- 推送完成后分别核对两边 main 与本地 HEAD 相同。双远端推送不具备跨服务原子性，一边失败时明确报告，并在解决后补推失败的一边，不强推。
+- 新克隆不会继承本地的双 pushurl 和额外远端配置，需要重新设置。默认拉取仍从 GitHub，必要时单独 fetch gitee 核对。
+
 ## 两套客户端环境
 
 `config/clients.json` 是部署目标配置：

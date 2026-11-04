@@ -2,6 +2,8 @@
 
 更新日期：2026-11-04（Asia/Shanghai）。版本：0.3.2。
 
+Git 托管增加 Gitee 远端 https://gitee.com/bearaicn/BearaiProfessionMail.git；origin 保留 GitHub 拉取地址，并配置 GitHub＋Gitee 两个推送地址，后续相同提交同步推送两边。配置与失败处理见 VERSIONING.md。
+
 README.md 为中文，README.en.md 为完整英文说明，顶部可互相切换；两者使用 docs/assets/readme-hero.jpg（1086×362，74,248 字节）的深色背景居中 LOGO 头图。原透明横幅保留作设计参考。所有文档图片均不在游戏部署资源白名单中，插件版本保持 0.3.2。
 
 0.3.2：使用用户认可的熊头信封 LOGO，缩为 128×128，保留 Alpha；PNG 28,040 字节，游戏 TGA 65,554 字节。替换主界面、设置页临时几何标识及 TOC 图标。部署增加资源白名单，只携带 TGA；旧大图已缩小，原始生成图仍保留在 Codex 生成图片目录。透明通道、纹理头、资源体积、Lua 与双客户端部署模拟均通过；游戏纹理显示待验收。
