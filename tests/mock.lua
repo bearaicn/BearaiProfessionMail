@@ -40,6 +40,7 @@ function methods:SetBackdropColor(...) self.background = {...} end
 function methods:SetBackdropBorderColor(...) self.border = {...} end
 function methods:SetEnabled(enabled) self.enabled = enabled end
 function methods:SetFont(...) self.font = {...} end
+function methods:SetJustifyV(value) self.justifyV = value end
 function methods:SetTextColor(...) self.textColor = {...} end
 function methods:SetParent(parent) self.parent = parent end
 function methods:GetParent() return self.parent end
@@ -52,13 +53,14 @@ for _, name in ipairs({ 'SetJustifyH','SetAutoFocus','SetMaxLetters',
     'SetFrameLevel','ClearAllPoints','RegisterForDrag','SetTexture','SetDesaturated',
     'SetHighlightTexture','SetOwner','SetBagItem','AddLine','SetFontObject','SetTextInsets',
     'SetWordWrap','SetAllPoints','EnableMouseWheel','SetTexCoord','SetMovable','StartMoving','StopMovingOrSizing',
-    'SetVertexColor','SetRotation','RegisterForClicks','SetSendMailItem' }) do methods[name] = noop end
+    'SetVertexColor','SetRotation','RegisterForClicks','SetSendMailItem','SetHyperlink' }) do methods[name] = noop end
 function CreateFrame(kind, name, parent, template)
     local frame = setmetatable({ scripts = {}, hooks = {}, events = {}, shown = true, parent = parent }, { __index = methods })
     if name then _G[name] = frame end
     return frame
 end
 function methods:CreateFontString() return CreateFrame('FontString') end
+function methods:SetTexture(value) self.texture = value end
 function methods:CreateTexture() return CreateFrame('Texture') end
 UIParent = CreateFrame('Frame')
 MailFrame = CreateFrame('Frame', nil, UIParent)
@@ -81,7 +83,20 @@ BAGS = { [0] = { [1] = { itemID = 2589, stackCount = 20, iconFileID = 1, hyperli
 C_Container = {
     GetContainerNumSlots = function(bag) return bag == 0 and 3 or 0 end,
     GetContainerItemInfo = function(bag, slot) return BAGS[bag] and BAGS[bag][slot] end,
-    PickupContainerItem = function(bag, slot) PICKED = { bag, slot }; CURSOR = true end,
+    PickupContainerItem = function(bag, slot)
+        if CURSOR then
+            assert(SPLIT_PICKED and not BAGS[bag][slot], '拆分只放入空背包槽位')
+            BAGS[bag][slot]=SPLIT_PICKED
+            SPLIT_PICKED=nil; CURSOR=false; PICKED=nil
+        else PICKED = { bag, slot }; SPLIT_PICKED=nil; CURSOR = true end
+    end,
+    SplitContainerItem = function(bag,slot,quantity)
+        local row = BAGS[bag][slot]
+        assert(quantity>0 and quantity<row.stackCount)
+        SPLIT_PICKED={itemID=row.itemID,stackCount=quantity,iconFileID=row.iconFileID,hyperlink=row.hyperlink}
+        row.stackCount=row.stackCount-quantity
+        PICKED={bag,slot}; CURSOR=true
+    end,
 }
 SKILLS_COLLAPSED = true
 function GetNumSkillLines() return SKILLS_COLLAPSED and 1 or 3 end
@@ -120,9 +135,15 @@ function ClickSendMailItemButton(index, remove)
     assert(CURSOR and PICKED, '附加操作必须有真实背包光标')
     assert(not MAIL_ITEMS[index], '禁止替换已有附件')
     local bag, slot = PICKED[1], PICKED[2]
+    -- 重现客户端按来源背包槽位整堆附加的行为，而不是理想化地使用拆分光标数量。
+    if SPLIT_PICKED then
+        BAGS[bag][slot].stackCount=BAGS[bag][slot].stackCount+SPLIT_PICKED.stackCount
+        SPLIT_PICKED=nil
+    end
     local info = BAGS[bag][slot]
     MAIL_ITEMS[index] = { itemID = info.itemID, count = info.stackCount, name = '模拟附件', icon = info.iconFileID, link = info.hyperlink, sourceSlot = slot }
     BAGS[bag][slot] = nil
+    SPLIT_PICKED=nil
     CURSOR = false
 end
 Settings = {

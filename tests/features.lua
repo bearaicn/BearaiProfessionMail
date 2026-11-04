@@ -56,14 +56,20 @@ local slot = button.item.slot
 button.scripts.OnDoubleClick(button, 'RightButton')
 assert(MAIL_ITEMS[1] == nil)
 button.scripts.OnDoubleClick(button, 'LeftButton')
+assert(NS.QuantityDialog.frame:IsShown() and MAIL_ITEMS[1]==nil)
+NS.QuantityDialog.confirm.scripts.OnClick()
 assert(MAIL_ITEMS[1] and MAIL_ITEMS[1].itemID == 2589 and MAIL_ITEMS[1].count == 20)
 assert(BAGS[0][slot] == nil and not CURSOR)
-local attached = NS.MaterialGrid.attachments[1]
-assert(attached.item and attached.item.mailSlot == 1 and attached.count:GetText() == '20')
-NS.MaterialGrid.category:SetValue(171) -- 与角色无关的独立专业；不能隐藏附件。
-assert(NS.MaterialGrid.attachments[1].item.itemID == 2589)
-attached.scripts.OnClick(attached, 'RightButton')
+assert(NS.MaterialGrid.attachments == nil, '助手不重复显示原生附件栏')
+NS.MaterialGrid.category:SetValue(171)
+assert(MAIL_ITEMS[1].itemID == 2589, '筛选不改变原生邮件附件')
+-- 背包仍有同类物品时，材料格子右击仍可撤回同类附件。
+local spare = BAGS[0][3]
+BAGS[0][3] = {itemID=2589,stackCount=2,hyperlink='item:2589'}
+NS.MaterialGrid.category:SetValue(0)
+NS.MaterialGrid.rows[1].scripts.OnClick(NS.MaterialGrid.rows[1], 'RightButton')
 assert(MAIL_ITEMS[1] == nil and BAGS[0][slot] and BAGS[0][slot].stackCount == 20)
+BAGS[0][3] = spare
 NS.MaterialGrid.category:SetValue(0)
 -- 满附件、战斗、操作待完成、鼠标占用、过期附件安全拦截。
 local row = NS.InventoryScanner.Scan()[1]

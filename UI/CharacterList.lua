@@ -5,6 +5,7 @@ local L = { offset = 0, rows = {} }
 function L.Select(key)
     if ns.db.settings.selected ~= key then
         ns.MaterialGrid.filter = nil
+        if ns.MaterialGrid.itemCategory then ns.MaterialGrid.itemCategory:SetValue("all",true) end
         ns.UI.CloseDropdown()
     end
     ns.db.settings.selected = key

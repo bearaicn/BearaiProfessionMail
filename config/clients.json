@@ -5,7 +5,16 @@
     "interface": 11509,
     "observedVersion": "1.15.9.70576",
     "observedAt": "2026-11-04",
-    "inGameValidation": "verified-by-user-classic-era-1.15.9"
+    "inGameValidation": "verified-by-user-classic-era-1.15.9",
+    "validatedAddonVersion": "0.3.2"
+  },
+  "Titan": {
+    "flavor": "titan",
+    "folder": "_classic_titan_",
+    "interface": 38002,
+    "observedVersion": "3.80.2.70522",
+    "observedAt": "2026-11-04",
+    "inGameValidation": "pending"
   },
   "Forever": {
     "flavor": "forever",

@@ -12,6 +12,7 @@ function ns.Refresh()
         ns.MaterialGrid.Refresh()
     end
     if ns.SettingsPanel then ns.SettingsPanel.Refresh() end
+    if ns.ItemRulesPanel then ns.ItemRulesPanel.Refresh() end
 end
 local function updateCharacter()
     local ok, err = ns.CharacterManager.RecordCurrent()
@@ -40,18 +41,30 @@ ns.events:SetScript("OnEvent", function(_, event, arg)
         end
         ns.Refresh()
     elseif event == "MAIL_SHOW" then
+        ns.MailController.trackedAttachments={}
         ns.MailController.open = true
         ns.MailButton.Show()
     elseif event == "MAIL_CLOSED" then
         ns.MailController.open = false
+        ns.MailController.CancelQuantity("邮箱已关闭。")
+        ns.MailController.trackedAttachments={}
         ns.MailButton.Hide()
+    elseif event == "MAIL_SEND_SUCCESS" then
+        ns.MailController.CancelQuantity("邮件已发送，本次待加入操作取消。")
+        ns.MailController.trackedAttachments={}
+        ns.Refresh()
     elseif event == "BAG_UPDATE_DELAYED" or event == "GET_ITEM_INFO_RECEIVED"
-        or event == "MAIL_SEND_INFO_UPDATE" or event == "PLAYER_REGEN_ENABLED" then
+        or event == "MAIL_SEND_INFO_UPDATE" or event == "PLAYER_REGEN_ENABLED" or event == "PLAYER_REGEN_DISABLED"
+        or event == "ITEM_LOCK_CHANGED" then
+        ns.MailController.AdvanceQuantity()
         ns.Refresh()
     end
 end)
+ns.events:SetScript("OnUpdate",function(_,elapsed)
+    if ns.MailController and ns.MailController.pendingQuantity then ns.MailController.AdvanceQuantity(elapsed) end
+end)
 for _, event in ipairs({ "ADDON_LOADED", "PLAYER_LOGIN", "SKILL_LINES_CHANGED", "MAIL_SHOW",
-    "MAIL_CLOSED", "BAG_UPDATE_DELAYED", "GET_ITEM_INFO_RECEIVED", "MAIL_SEND_INFO_UPDATE", "PLAYER_LEVEL_UP",
-    "PLAYER_REGEN_ENABLED" }) do
+    "MAIL_CLOSED", "MAIL_SEND_SUCCESS", "BAG_UPDATE_DELAYED", "GET_ITEM_INFO_RECEIVED", "MAIL_SEND_INFO_UPDATE", "PLAYER_LEVEL_UP",
+    "PLAYER_REGEN_ENABLED", "PLAYER_REGEN_DISABLED", "ITEM_LOCK_CHANGED" }) do
     ns.events:RegisterEvent(event)
 end

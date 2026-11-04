@@ -3,6 +3,6 @@
   "private": true,
   "license": "MIT",
   "version": "0.1.0",
-  "scripts": { "test": "node scripts/test.cjs" },
+  "scripts": { "test": "node scripts/data/build.cjs --check && node scripts/test.cjs", "data:build": "node scripts/data/build.cjs", "data:check": "node scripts/data/build.cjs --check" },
   "devDependencies": { "fengari": "0.1.5", "luaparse": "0.3.1" }
 }

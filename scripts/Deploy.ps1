@@ -1,6 +1,6 @@
 [CmdletBinding(SupportsShouldProcess)]
 param(
-    [ValidateSet('Hardcore', 'Forever', 'Both')][string]$Client = 'Hardcore',
+    [ValidateSet('Hardcore', 'Forever', 'Titan', 'Both', 'All')][string]$Client = 'Hardcore',
     [string]$GameRoot = 'D:\Games\World of Warcraft',
     [switch]$Apply
 )
@@ -10,12 +10,14 @@ $toc = Join-Path $source 'BearaiProfessionMail.toc'
 if (-not (Test-Path -LiteralPath $toc)) { throw '插件 TOC 不存在。' }
 $clients = Get-Content -LiteralPath (Join-Path $source 'config\clients.json') -Raw | ConvertFrom-Json
 $targets = if ($Client -eq 'Both') { @('Hardcore', 'Forever') } else { @($Client) }
+if ($Client -eq 'All') { $targets = @('Hardcore','Forever','Titan') }
 $tocContent = Get-Content -LiteralPath $toc -Raw
 $version = [regex]::Match($tocContent, '(?m)^## Version:\s*([^\r\n]+)').Groups[1].Value.Trim()
 if (-not $version) { throw 'TOC 缺少插件版本。' }
 $files = @('BearaiProfessionMail.toc') + @(Get-Content -LiteralPath $toc | Where-Object { $_ -match '\.lua$' })
 $assets = @(Get-Content -LiteralPath (Join-Path $source 'config\assets.json') -Raw | ConvertFrom-Json)
 $files += $assets
+$files += 'LICENSE'
 # 严格白名单，只复制 TOC、Lua 和显式资源；不删除目标目录中的任何文件。
 foreach ($file in $files) {
     if ($file -match '\.\.|^[/\\]|:') { throw "TOC 中存在非法路径：$file" }

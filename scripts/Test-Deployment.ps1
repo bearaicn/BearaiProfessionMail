@@ -2,23 +2,23 @@ $ErrorActionPreference = 'Stop'
 $source = Split-Path -Parent $PSScriptRoot
 $sourceToc = Get-Content -LiteralPath (Join-Path $source 'BearaiProfessionMail.toc') -Raw
 $expectedVersion = [regex]::Match($sourceToc, '(?m)^## Version:\s*([^\r\n]+)').Groups[1].Value.Trim()
-$expectedFileCount = 2 + @($sourceToc -split '\r?\n' | Where-Object { $_ -match '\.lua$' }).Count
+$expectedFileCount = 3 + @($sourceToc -split '\r?\n' | Where-Object { $_ -match '\.lua$' }).Count
 $expectedFileCount += @(Get-Content -LiteralPath (Join-Path $source 'config\assets.json') -Raw | ConvertFrom-Json).Count
 $fixture = Join-Path $source ('.tmp\deploy-' + [guid]::NewGuid().ToString('N'))
-foreach ($client in @('_classic_era_', '_forever_')) {
+foreach ($client in @('_classic_era_', '_forever_', '_classic_titan_')) {
     New-Item -ItemType Directory -Path (Join-Path $fixture "$client\Interface\AddOns\OtherAddon") -Force | Out-Null
     Set-Content -LiteralPath (Join-Path $fixture "$client\Interface\AddOns\OtherAddon\sentinel.txt") -Value 'untouched'
 }
-& "$PSScriptRoot\Deploy.ps1" -Client Both -GameRoot $fixture
+& "$PSScriptRoot\Deploy.ps1" -Client All -GameRoot $fixture
 if (Test-Path -LiteralPath (Join-Path $fixture '_classic_era_\Interface\AddOns\BearaiProfessionMail')) {
     throw '预览模式发生了写入。'
 }
-& "$PSScriptRoot\Deploy.ps1" -Client Both -GameRoot $fixture -Apply
-foreach ($client in @('_classic_era_', '_forever_')) {
+& "$PSScriptRoot\Deploy.ps1" -Client All -GameRoot $fixture -Apply
+foreach ($client in @('_classic_era_', '_forever_', '_classic_titan_')) {
     $target = Join-Path $fixture "$client\Interface\AddOns\BearaiProfessionMail"
     $files = @(Get-ChildItem -LiteralPath $target -Recurse -File)
     if ($files.Count -ne $expectedFileCount) { throw "部署文件数量异常：$($files.Count)" }
-    $expectedInterface = if ($client -eq '_classic_era_') { 11509 } else { 16001 }
+    $expectedInterface = @{_classic_era_=11509;_forever_=16001;_classic_titan_=38002}[$client]
     $deployedToc = Get-Content -LiteralPath (Join-Path $target 'BearaiProfessionMail.toc') -Raw
     if ($deployedToc -notmatch "(?m)^## Interface: $expectedInterface\r?`$") { throw '目标 TOC Interface 错误。' }
     $manifest = Get-Content -LiteralPath (Join-Path $target 'deployment.json') -Raw | ConvertFrom-Json
@@ -35,4 +35,4 @@ foreach ($client in @('_classic_era_', '_forever_')) {
     $texture = Join-Path $target 'Media\Logo.tga'
     if (-not (Test-Path -LiteralPath $texture) -or (Get-Item -LiteralPath $texture).Length -gt 70000) { throw '纹理缺失或超出体积预算。' }
 }
-Write-Output "PASS：双客户端部署模拟、预览零写入、独立 Interface、部署清单与哈希校验、其他插件哨兵未改动。测试目录：$fixture"
+Write-Output "PASS：三客户端部署模拟、预览零写入、独立 Interface、部署清单与哈希校验、其他插件哨兵未改动。测试目录：$fixture"

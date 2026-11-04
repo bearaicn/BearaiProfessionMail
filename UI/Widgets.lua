@@ -76,7 +76,11 @@ end
 function UI.Dropdown(parent, x, y, width, callback)
     local control = UI.Button(parent, "", x, y, width, function(self) self:ToggleMenu() end)
     control.options, control.offset = {}, 0
-    control.arrow = UI.Label(control, "▾", width - 22, -5, 16)
+    -- 图标使用客户端纹理，不依赖当前字体是否包含 Unicode 符号。
+    control.arrow = control:CreateTexture(nil, "OVERLAY")
+    control.arrow:SetSize(18,18)
+    control.arrow:SetPoint("RIGHT",control,"RIGHT",-5,0)
+    control.arrow:SetTexture("Interface\\ChatFrame\\UI-ChatIcon-ScrollDown-Up")
     control.label:SetWidth(width - 28)
     control.label:SetJustifyH("LEFT")
     control.label:ClearAllPoints()
@@ -105,9 +109,14 @@ function UI.Dropdown(parent, x, y, width, callback)
         for index, row in ipairs(self.menuRows) do
             local option = self.options[self.offset + index]
             row:SetShown(option ~= nil)
-            if option then row:SetText((option.value == self.value and "✓ " or "") .. option.text) end
+            row.selected = option ~= nil and option.value == self.value
+            row.check:SetShown(row.selected)
+            if option then
+                row:SetText(option.text)
+                row:SetBackdropColor(unpack(row.selected and T.selected or T.surface))
+            end
         end
-        self.menu.status:SetText(#self.options > 8 and "滚轮或箭头查看更多选项" or "选择一项")
+        self.menu.status:SetText(#self.options > 8 and "滚轮翻页" or "选择一项")
     end
     function control:ToggleMenu()
         if UI.openDropdown == self then UI.CloseDropdown(); return end
@@ -133,15 +142,32 @@ function UI.Dropdown(parent, x, y, width, callback)
                 local row = UI.Button(self.menu, "", 4, -4 - (index - 1) * 27, width - 8,
                     function() self:Choose(self.offset + optionIndex) end)
                 row:SetHeight(26)
+                row.check = row:CreateTexture(nil,"OVERLAY")
+                row.check:SetSize(18,18)
+                row.check:SetPoint("LEFT",row,"LEFT",3,0)
+                row.check:SetTexture("Interface\\Buttons\\UI-CheckBox-Check")
+                row.label:ClearAllPoints()
+                row.label:SetPoint("TOPLEFT",24,-5)
+                row.label:SetWidth(width-38)
+                row.label:SetJustifyH("LEFT")
+                row:SetScript("OnLeave",function(self)
+                    self:SetBackdropColor(unpack(self.selected and T.selected or T.surface))
+                end)
                 self.menuRows[index] = row
             end
             self.menu.status = UI.Label(self.menu, "", 7, -225, width - 65, 10, T.muted)
-            UI.Button(self.menu, "↑", width - 60, -222, 26, function()
+            self.menu.up = UI.Button(self.menu, "", width - 60, -222, 26, function()
                 self.offset = self.offset - 1; self:RefreshMenu()
             end)
-            UI.Button(self.menu, "↓", width - 31, -222, 26, function()
+            self.menu.down = UI.Button(self.menu, "", width - 31, -222, 26, function()
                 self.offset = self.offset + 1; self:RefreshMenu()
             end)
+            for _, spec in ipairs({ {self.menu.up,"ScrollUp"}, {self.menu.down,"ScrollDown"} }) do
+                local icon = spec[1]:CreateTexture(nil,"OVERLAY")
+                icon:SetSize(18,18); icon:SetPoint("CENTER",spec[1],"CENTER")
+                icon:SetTexture("Interface\\ChatFrame\\UI-ChatIcon-" .. spec[2] .. "-Up")
+                spec[1].icon = icon
+            end
             self.menu:EnableMouseWheel(true)
             self.menu:SetScript("OnMouseWheel", function(_, delta)
                 self.offset = self.offset - delta; self:RefreshMenu()

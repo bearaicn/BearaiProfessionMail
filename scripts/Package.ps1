@@ -1,6 +1,6 @@
 [CmdletBinding()]
 param(
-    [ValidateSet('Hardcore','Forever','Both')][string]$Client = 'Both',
+    [ValidateSet('Hardcore','Forever','Titan','Both','All')][string]$Client = 'All',
     [string]$Ref,
     [switch]$AllowDirty
 )
@@ -42,6 +42,7 @@ $output = Join-Path $repoRoot ".tmp/releases/v$version"
 New-Item -ItemType Directory -Path $output -Force | Out-Null
 $checksums = @()
 $targets = if ($Client -eq 'Both') { @('Hardcore','Forever') } else { @($Client) }
+if ($Client -eq 'All') { $targets = @('Hardcore','Forever','Titan') }
 foreach ($name in $targets) {
     $config = $clients.$name
     $stage = Join-Path $repoRoot ('.tmp/package-' + [guid]::NewGuid().ToString('N'))
@@ -53,13 +54,16 @@ foreach ($name in $targets) {
         Copy-Item -LiteralPath (Join-Path $root $file) -Destination $destination
     }
     $targetToc = [regex]::Replace($toc, '(?m)^## Interface:[^\r\n]*', "## Interface: $($config.interface)")
+    $validation = $config.inGameValidation
+    if ($validation -like 'verified*' -and $config.validatedAddonVersion -ne $version) { $validation = 'pending-regression-for-this-addon-version' }
     [IO.File]::WriteAllText((Join-Path $addon 'BearaiProfessionMail.toc'), $targetToc, [Text.UTF8Encoding]::new($false))
     [ordered]@{ version=$version; tag="v$version"; target=$config.flavor; interface=$config.interface;
-        gitCommit=$commit; workingTreeDirty=$dirty; inGameValidation=$config.inGameValidation } |
+        gitCommit=$commit; workingTreeDirty=$dirty; inGameValidation=$validation;
+        lastVerifiedAddonVersion=$config.validatedAddonVersion } |
         ConvertTo-Json | Set-Content -LiteralPath (Join-Path $addon 'release.json') -Encoding utf8
     @"
 BearAI Profession Mail / 熊智专业邮寄助手 $version
-Compatibility / 兼容状态：$($config.inGameValidation)
+Compatibility / 兼容状态：$validation
 Copy BearaiProfessionMail to this client's Interface/AddOns and restart WoW.
 将 BearaiProfessionMail 放入对应客户端 Interface/AddOns 后重启游戏。
 Target / 目标：$($config.flavor), Interface $($config.interface)
@@ -67,14 +71,14 @@ License: MIT. See LICENSE.
 Documentation: https://github.com/bearaicn/BearaiProfessionMail
 Mirror: https://gitee.com/bearaicn/BearaiProfessionMail
 "@ | Set-Content -LiteralPath (Join-Path $addon 'INSTALL.txt') -Encoding utf8
-    $suffix = if ($config.flavor -eq 'forever') { 'forever-experimental' } else { $config.flavor }
+    $suffix = if ($config.flavor -in @('forever','titan')) { "$($config.flavor)-experimental" } else { $config.flavor }
     $zip = Join-Path $output "BearaiProfessionMail-$version-$suffix.zip"
     Compress-Archive -LiteralPath $addon -DestinationPath $zip -Force
     $checksums += "$((Get-FileHash -LiteralPath $zip -Algorithm SHA256).Hash.ToLowerInvariant())  $([IO.Path]::GetFileName($zip))"
     Write-Output $zip
 }
 $checksums = @()
-foreach ($suffix in @('era','forever-experimental')) {
+foreach ($suffix in @('era','forever-experimental','titan-experimental')) {
     $file = Join-Path $output "BearaiProfessionMail-$version-$suffix.zip"
     if (Test-Path -LiteralPath $file) {
         $checksums += "$((Get-FileHash -LiteralPath $file).Hash.ToLowerInvariant())  $([IO.Path]::GetFileName($file))"

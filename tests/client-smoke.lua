@@ -1,0 +1,7 @@
+assert(NS.Compatibility.Flavor() == 'forever')
+assert(not NS.ProfessionByID[755] and not NS.ProfessionByID[773], '时光服新增专业不污染无限服')
+assert(NS.MaterialRules[39151] == nil and NS.MaterialRules[36909] == nil)
+NS.events.scripts.OnEvent(NS.events, 'ADDON_LOADED', 'BearaiProfessionMail')
+NS.events.scripts.OnEvent(NS.events, 'PLAYER_LOGIN')
+assert(NS.db == BearaiProfessionMailDB.profiles.forever)
+print('PASS: 无限服独立启动与时光服规则隔离')

@@ -1,32 +1,7 @@
 local _, ns = ...
--- 稳定 skillLine ID；规则使用物品 ID，避免物品名称本地化和模糊类型误匹配。
-ns.Professions = {
-    { id = 171, name = "炼金术", en = "Alchemy" },
-    { id = 164, name = "锻造", en = "Blacksmithing" },
-    { id = 333, name = "附魔", en = "Enchanting" },
-    { id = 202, name = "工程学", en = "Engineering" },
-    { id = 182, name = "草药学", en = "Herbalism" },
-    { id = 165, name = "制皮", en = "Leatherworking" },
-    { id = 186, name = "采矿", en = "Mining" },
-    { id = 393, name = "剥皮", en = "Skinning" },
-    { id = 197, name = "裁缝", en = "Tailoring" },
-    { id = 185, name = "烹饪", en = "Cooking" },
-    { id = 356, name = "钓鱼", en = "Fishing" },
-    { id = 129, name = "急救", en = "First Aid" },
-}
-ns.ProfessionByID, ns.ProfessionByName = {}, {}
-for _, p in ipairs(ns.Professions) do
-    ns.ProfessionByID[p.id] = p
-    ns.ProfessionByName[p.name], ns.ProfessionByName[p.en] = p.id, p.id
-end
-ns.MaterialRules = {}
-local function add(ids, professions)
-    for _, id in ipairs(ids) do
-        ns.MaterialRules[id] = ns.MaterialRules[id] or {}
-        for _, profession in ipairs(professions) do ns.MaterialRules[id][profession] = true end
-    end
-end
--- 常见旧世原料；不是完整配方数据库，采集专业没有凭空推断的消耗材料。
+-- 维护者旧世补充：保留常见用品和配方表之外的材料用途，不清空生成索引。
+-- 用户 SavedVariables 规则的优先级更高。
+local add = ns.MaterialData.Add
 add({765,785,2447,2449,2450,2452,2453,3355,3356,3357,3358,3369,3818,3819,3820,3821,
     4625,8831,8836,8838,8839,8845,8846,13463,13464,13465,13466,13467,13468}, {171})
 add({2770,2771,2772,2775,2776,3858,7911,10620,11370}, {186})

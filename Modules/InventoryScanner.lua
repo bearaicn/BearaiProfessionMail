@@ -7,14 +7,14 @@ function ns.InventoryScanner.Scan()
         for slot = 1, ns.Compatibility.Slots(bag) do
             local info = ns.Compatibility.Item(bag, slot)
             if info and info.itemID then
-                local classID, bindType, reagent = ns.Compatibility.ItemDetails(info.itemID)
+                local classID, bindType, reagent, subclassID = ns.Compatibility.ItemDetails(info.itemID)
                 local questAPI = C_Container and C_Container.GetContainerItemQuestInfo or GetContainerItemQuestInfo
                 local questInfo = questAPI and questAPI(bag, slot)
                 rows[#rows + 1] = { bag = bag, slot = slot, itemID = info.itemID,
                     link = info.hyperlink, name = ns.Compatibility.ItemName(info.itemID),
                     icon = info.iconFileID, count = info.stackCount or 1,
                     locked = info.isLocked, bound = info.isBound, quality = info.quality,
-                    classID = classID, bindType = bindType, craftingReagent = reagent,
+                    classID = classID, subclassID = subclassID, bindType = bindType, craftingReagent = reagent,
                     quest = type(questInfo) == "table" and questInfo.isQuestItem or false }
             end
         end

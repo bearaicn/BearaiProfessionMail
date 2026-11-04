@@ -1,0 +1,196 @@
+[
+  {
+    "flavor": "era",
+    "build": "1.15.9.70576",
+    "retrievedAt": "2026-11-04T16:04:17.8459666+08:00",
+    "recipeRelations": 1570,
+    "materials": 501,
+    "professionRelations": 853,
+    "professions": [
+      {
+        "id": 129,
+        "recipes": 15
+      },
+      {
+        "id": 164,
+        "recipes": 315
+      },
+      {
+        "id": 165,
+        "recipes": 315
+      },
+      {
+        "id": 171,
+        "recipes": 133
+      },
+      {
+        "id": 182,
+        "recipes": 0
+      },
+      {
+        "id": 185,
+        "recipes": 90
+      },
+      {
+        "id": 186,
+        "recipes": 13
+      },
+      {
+        "id": 197,
+        "recipes": 291
+      },
+      {
+        "id": 202,
+        "recipes": 198
+      },
+      {
+        "id": 333,
+        "recipes": 200
+      },
+      {
+        "id": 356,
+        "recipes": 0
+      },
+      {
+        "id": 393,
+        "recipes": 0
+      }
+    ],
+    "limitations": [
+      "Client spell records may include unavailable recipes; no live availability filter.",
+      "Generic milling/prospecting inputs and non-recipe supplies require curated supplements."
+    ]
+  },
+  {
+    "flavor": "titan",
+    "build": "3.80.2.70522",
+    "retrievedAt": "2026-11-04T16:04:26.2406155+08:00",
+    "recipeRelations": 3576,
+    "materials": 763,
+    "professionRelations": 1374,
+    "professions": [
+      {
+        "id": 129,
+        "recipes": 17
+      },
+      {
+        "id": 164,
+        "recipes": 514
+      },
+      {
+        "id": 165,
+        "recipes": 544
+      },
+      {
+        "id": 171,
+        "recipes": 254
+      },
+      {
+        "id": 182,
+        "recipes": 0
+      },
+      {
+        "id": 185,
+        "recipes": 174
+      },
+      {
+        "id": 186,
+        "recipes": 26
+      },
+      {
+        "id": 197,
+        "recipes": 431
+      },
+      {
+        "id": 202,
+        "recipes": 309
+      },
+      {
+        "id": 333,
+        "recipes": 302
+      },
+      {
+        "id": 356,
+        "recipes": 0
+      },
+      {
+        "id": 393,
+        "recipes": 0
+      },
+      {
+        "id": 755,
+        "recipes": 558
+      },
+      {
+        "id": 773,
+        "recipes": 447
+      }
+    ],
+    "limitations": [
+      "Client spell records may include unavailable recipes; no live availability filter.",
+      "Generic milling/prospecting inputs and non-recipe supplies require curated supplements."
+    ]
+  },
+  {
+    "flavor": "forever",
+    "build": "1.60.1.70755",
+    "retrievedAt": "2026-11-04T16:04:31.6488172+08:00",
+    "recipeRelations": 2494,
+    "materials": 589,
+    "professionRelations": 1084,
+    "professions": [
+      {
+        "id": 129,
+        "recipes": 32
+      },
+      {
+        "id": 164,
+        "recipes": 506
+      },
+      {
+        "id": 165,
+        "recipes": 592
+      },
+      {
+        "id": 171,
+        "recipes": 196
+      },
+      {
+        "id": 182,
+        "recipes": 3
+      },
+      {
+        "id": 185,
+        "recipes": 133
+      },
+      {
+        "id": 186,
+        "recipes": 18
+      },
+      {
+        "id": 197,
+        "recipes": 471
+      },
+      {
+        "id": 202,
+        "recipes": 275
+      },
+      {
+        "id": 333,
+        "recipes": 262
+      },
+      {
+        "id": 356,
+        "recipes": 3
+      },
+      {
+        "id": 393,
+        "recipes": 3
+      }
+    ],
+    "limitations": [
+      "Client spell records may include unavailable recipes; no live availability filter.",
+      "Generic milling/prospecting inputs and non-recipe supplies require curated supplements."
+    ]
+  }
+]

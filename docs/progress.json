@@ -1,8 +1,229 @@
 {
   "project": "BearaiProfessionMail",
-  "version": "0.3.2",
-  "updatedAt": "2026-11-04T14:16:33+08:00",
-  "status": "github-dual-client-release-gitee-new-experimental-assets-pending",
+  "version": "0.5.6",
+  "release056": {
+    "targets": ["era", "forever", "titan"],
+    "tag": "v0.5.6",
+    "prerelease": true,
+    "validation": "pass-npm-test-26-lua-files-three-client-deployment-isolation-and-diff-check",
+    "status": "prepared-awaiting-commit-tag-packages-and-publication"
+  },
+  "foreverDeployment056": {
+    "deployedAt": "2026-11-04T22:27:07+08:00",
+    "version": "0.5.6",
+    "clientVersion": "1.60.1.70755",
+    "interface": 16001,
+    "deploymentHashes": "pass-30-files-and-target-toc",
+    "backup": false,
+    "inGame": "pending",
+    "nextStep": "restart-forever-client-and-verify-0.5.6"
+  },
+  "classicEraDeployment056": {
+    "deployedAt": "2026-11-04T22:25:32+08:00",
+    "version": "0.5.6",
+    "clientVersion": "1.15.9.70576",
+    "interface": 11509,
+    "deploymentHashes": "pass-30-files",
+    "backup": false,
+    "inGame": "pending",
+    "nextStep": "restart-classic-era-client-and-verify-0.5.6"
+  },
+  "attachedStyle056": {
+    "changedFiles": ["UI/MaterialGrid.lua", "tests/stack-identity.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/progress.json", "docs/releases/v0.5.6.md"],
+    "change": "attached-icons-desaturated-with-checkmark-remove-restores-color-after-unlock",
+    "previousStackFixInGame": "verified-by-user",
+    "validation": "pass-three-clients-26-lua-files-titan-package-and-30-deployed-file-hashes",
+    "deployedAt": "2026-11-04T22:24:09+08:00",
+    "inGame": "pending"
+  },
+  "lockedBagDuplicates055": {
+    "change": "deduplicate-locked-original-bag-slots-against-validated-native-attachment-records",
+    "validation": "pass-three-clients-26-lua-files-and-titan-package",
+    "deployment": "titan-0.5.5-interface-38002-30-file-hashes-verified-no-backup",
+    "deployedAt": "2026-11-04T22:19:18+08:00",
+    "inGame": "pending"
+  },
+  "lureAssignment054": {
+    "change": "remove-6533-engineering-assignment-keep-fishing-only",
+    "changedFiles": ["Data/Overrides/Common.lua", "tests/stack-identity.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/STACK-TRACKING.md", "docs/TESTING.md", "docs/PROGRESS.md", "docs/releases/v0.5.4.md"],
+    "validation": { "npmTest": "pass-three-clients-and-26-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-30-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T22:14:04+08:00"
+  },
+  "stackIdentity053": {
+    "implemented": ["individual-stack-native-attachment-tracking", "checked-attached-cells-in-original-grid", "right-click-other-stack-adds-not-removes", "validate-and-rebind-native-attachments", "stable-itemID-link-bag-slot-sort", "devices-and-explosives-categories", "6533-engineering-fishing-supply-rule"],
+    "changedFiles": ["Modules/MailController.lua", "Core/Init.lua", "UI/MaterialGrid.lua", "Data/ItemCategories.lua", "Data/Overrides/Common.lua", "tests/quantity-and-toggle.lua", "tests/stack-identity.lua", "scripts/test.cjs", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/STACK-TRACKING.md", "docs/releases/v0.5.3.md"],
+    "validation": { "npmTest": "pass-three-clients-and-26-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-30-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T22:11:21+08:00"
+  },
+  "buttonSwap052": {
+    "changes": ["bulk-add-right-of-filter-row", "rules-right-of-pagination-row", "both-buttons-106px-wide"],
+    "changedFiles": ["UI/MaterialGrid.lua", "tests/mail-button-layout.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/releases/v0.5.2.md"],
+    "validation": { "npmTest": "pass-three-clients-and-26-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-30-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T21:52:01+08:00"
+  },
+  "asyncQuantity051": {
+    "implemented": ["wait-for-specific-split-stack-unlock", "event-and-bounded-polling", "four-second-timeout", "revalidate-before-attaching", "cancel-on-context-change", "progress-and-exclusive-attachment-guard"],
+    "changedFiles": ["Core/Compatibility.lua", "Modules/MailController.lua", "Core/Init.lua", "UI/MainFrame.lua", "UI/MaterialGrid.lua", "tests/quantity-pending.lua", "scripts/test.cjs", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.5.1.md"],
+    "validation": { "regressionBeforeFix": "reproduced-split-only-when-new-stack-is-locked", "npmTest": "pass-three-clients-and-26-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-30-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T21:46:55+08:00"
+  },
+  "secondaryClassification050": {
+    "implemented": ["runtime-client-class-and-subclass", "separate-category-filter", "intersection-with-profession-and-search", "bulk-add-respects-category", "unmapped-bag-items-rule-view", "user-priority-and-exclusion-preserved", "no-profession-inference-or-auto-user-save"],
+    "changedFiles": ["Data/ItemCategories.lua", "Modules/ItemClassifier.lua", "Core/Compatibility.lua", "Modules/InventoryScanner.lua", "Modules/MailController.lua", "UI/MaterialGrid.lua", "UI/CharacterList.lua", "UI/ItemRulesPanel.lua", "tests/item-classification.lua", "scripts/test.cjs", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/FEATURE-STATUS.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.5.0.md", "data-sources/README.md"],
+    "databaseSchema": 1,
+    "validation": { "npmTest": "pass-three-clients-and-26-lua-files", "deploymentSimulation": "pass-three-clients", "titanPackage": "pass", "deploymentHashes": "pass-30-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T21:38:24+08:00",
+    "completionAssessment": "core-implemented-game-acceptance-not-complete",
+    "optionalNextFeaturesNotImplemented": ["per-item-keep-quantity", "user-rule-import-export"]
+  },
+  "unattachedDoubleClick049": {
+    "implemented": ["quantity-dialog-only-for-unattached-itemID", "recheck-before-quantity-add", "wait-for-unknown-attachment-data"],
+    "changedFiles": ["Modules/MailController.lua", "UI/QuantityDialog.lua", "UI/MaterialGrid.lua", "tests/quantity-and-toggle.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.9.md"],
+    "validation": { "npmTest": "pass-three-clients-and-24-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-28-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T21:01:18+08:00"
+  },
+  "defaultEntry048": {
+    "implemented": ["always-show-while-mail-open", "no-API-readiness-visibility-gate", "parent-OnShow-handles-first-display-order", "keep-auto-switch-to-send"],
+    "changedFiles": ["UI/MailButton.lua", "tests/mail-button-layout.lua", "tests/quantity-and-toggle.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.8.md"],
+    "validation": { "npmTest": "pass-three-clients-and-24-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-28-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T20:56:22+08:00"
+  },
+  "partialStackFix047": {
+    "issue": "user-reported-selected-quantity-still-attaches-whole-stack",
+    "fix": "materialize-split-in-empty-normal-bag-slot-then-attach-and-verify-count",
+    "requiresFreeNormalBagSlotForPartialQuantity": true,
+    "changedFiles": ["Core/Compatibility.lua", "Modules/MailController.lua", "UI/QuantityDialog.lua", "tests/mock.lua", "tests/quantity-and-toggle.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.7.md"],
+    "validation": { "regressionBeforeFix": "reproduced-failure-with-whole-source-stack-mail-behavior", "npmTest": "pass-three-clients-and-24-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-28-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T20:08:52+08:00"
+  },
+  "sendTabFix046": {
+    "implemented": ["select-native-second-send-tab", "verify-send-frame-visible", "preserve-native-click-hooks", "native-function-fallback", "show-only-on-send-if-no-switch-API", "72x22-centered-entry-label"],
+    "changedFiles": ["Core/Compatibility.lua", "UI/MailButton.lua", "tests/mock.lua", "tests/mail-button-layout.lua", "tests/quantity-and-toggle.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.6.md"],
+    "validation": { "npmTest": "pass-three-clients-and-24-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-28-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T20:02:18+08:00"
+  },
+  "dropdownFontFix045": {
+    "issue": "dropdown-check-and-arrow-render-as-missing-glyph-squares",
+    "fix": "client-textures-for-check-disclosure-and-page-arrows-with-selection-background",
+    "changedFiles": ["UI/Widgets.lua", "tests/mock.lua", "tests/dropdown-icons.lua", "scripts/test.cjs", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.5.md"],
+    "validation": { "npmTest": "pass-three-clients-and-24-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-28-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T19:56:07+08:00"
+  },
+  "interaction044": {
+    "implemented": ["right-click-remove-if-attached-else-add", "double-click-quantity-dialog", "partial-stack-new-and-legacy-API", "revalidate-slot-link-and-count", "bulk-button-right-aligned-pagination-row", "entry-left-of-close-button", "entry-click-native-inbox"],
+    "changedFiles": ["Core/Compatibility.lua", "Modules/MailController.lua", "UI/QuantityDialog.lua", "UI/MaterialGrid.lua", "UI/MailButton.lua", "UI/MainFrame.lua", "BearaiProfessionMail.toc", "tests/mock.lua", "tests/features.lua", "tests/titan.lua", "tests/behavior.lua", "tests/mail-button-layout.lua", "tests/quantity-and-toggle.lua", "scripts/test.cjs", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.4.md"],
+    "validation": { "npmTest": "pass-three-clients-and-24-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-28-files", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T19:53:06+08:00"
+  },
+  "bulkProfessionAdd": {
+    "implemented": ["specific-profession-filter-only", "search-across-all-pages", "whole-stack-native-attachments", "preserve-existing-attachments-and-recipient", "skip-locked", "stop-on-full-or-blocked", "no-send-and-no-background-resume"],
+    "changedFiles": ["Modules/MailController.lua", "UI/MaterialGrid.lua", "Core/Init.lua", "tests/bulk-add.lua", "scripts/test.cjs", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/TESTING.md", "docs/PROGRESS.md", "docs/releases/v0.4.3.md", "docs/AI-INTEGRATION.md"],
+    "validation": { "npmTest": "pass-three-clients-and-23-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-27-files", "inGame": "pending-client-attachment-throttling-and-layout" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T19:17:14+08:00",
+    "aiIntegration": "feasibility-documented-only-not-implemented"
+  },
+  "uiUpdate042": {
+    "changes": ["remove-duplicate-attachment-area", "three-rows-33-material-cells", "correct-pagination", "profession-materials-entry-right-of-mail-close-button", "space-for-narrow-category-sidebar", "assistant-right-opening-reserves-entry-row"],
+    "sidebarResearch": "docs/MAIL-SIDEBAR-RESEARCH.md",
+    "sidebarProvider": "EasyAuction-3.5.24-mail-compose-classification",
+    "sidebarDataSource": "game-API-item-classID-subclassID-not-profession-recipe-database",
+    "thirdPartyCodeOrDataImported": false,
+    "validation": { "npmTest": "pass-three-clients-23-lua-files", "titanPackage": "pass", "deploymentHashes": "pass-27-files", "thirdPartySourceFilesUnchanged": "pass-hashes-match", "inGame": "pending" },
+    "deployedClient": "titan",
+    "deployedAt": "2026-11-04T18:17:41+08:00",
+    "changedFiles": ["UI/MaterialGrid.lua", "UI/MailButton.lua", "UI/MainFrame.lua", "tests/behavior.lua", "tests/features.lua", "tests/titan.lua", "tests/mail-button-layout.lua", "BearaiProfessionMail.toc", "README.md", "README.en.md", "CHANGELOG.md", "docs/MAIL-SIDEBAR-RESEARCH.md", "docs/releases/v0.4.2.md", "docs/PROGRESS.md", "docs/TESTING.md"]
+  },
+  "updatedAt": "2026-11-04T22:14:04+08:00",
+  "status": "current-development-build-deployed-to-titan-awaiting-in-game-validation",
+  "developmentPolicy": {
+    "supportedFlavors": ["era", "forever", "titan"],
+    "commonFixesApplyToAllFlavors": true,
+    "automatedValidation": "all-three-flavors-where-executable",
+    "currentDeliveryAndInGameTestTarget": "titan-only",
+    "otherClientDeploymentAndNewPackages": "deferred-until-user-instructs",
+    "deploymentBackups": false,
+    "onlineRelease": "requires-explicit-release-task",
+    "inGameEvidence": "record-separately-per-client"
+  },
+  "mailboxEntryFix": {
+    "issue": "entry-overlaps-third-party-mail-tabs-confirmed-by-user-screenshot",
+    "cause": "global-MailFrameTab-scan-does-not-cover-MailFrame.Tabs-layout",
+    "placement": "left-of-mailbox-close-button-since-0.4.4",
+    "changedFiles": ["UI/MailButton.lua", "tests/mail-button-layout.lua", "tests/behavior.lua", "scripts/test.cjs", "README.md", "README.en.md", "CHANGELOG.md", "docs/TESTING.md", "docs/PROGRESS.md"],
+    "validation": { "npmTest": "pass-three-clients-and-23-lua-files", "realDeploymentHashes": "pass-27-files", "inGame": "pending-user-confirmation" },
+    "deployedClient": "titan",
+    "backupCreated": false
+  },
+  "latestDeployment": {
+    "client": "titan",
+    "addonVersion": "0.5.4",
+    "interface": 38002,
+    "deployedAt": "2026-11-04T22:14:04+08:00",
+    "verifiedFileHashes": 30,
+    "workingTreeDirty": true,
+    "inGameValidation": "pending",
+    "backup": null,
+    "futureDeploymentPreference": "user-requested-no-backups-direct-update",
+    "included": ["three-client-generated-data", "standalone-item-rules-panel", "assistant-and-settings-rule-buttons", "user-rule-precedence", "drag-item-rule-entry", "native-mail-double-click-add-and-right-click-remove"]
+  },
+  "itemRulesPanel": {
+    "implemented": ["standalone-UIParent-panel", "assistant-and-settings-entry-buttons", "merged-rule-list", "name-and-ID-search", "effective-source-filter-and-labels", "drag-or-ID-editor", "all-edits-saved-as-user-rules", "user-completely-overrides-assistant", "empty-user-exclusion", "delete-user-rule-and-restore-assistant", "separate-character-editor"],
+    "changedFiles": ["UI/ItemRulesPanel.lua", "UI/MainFrame.lua", "UI/MaterialGrid.lua", "UI/SettingsPanel.lua", "Modules/MaterialMatcher.lua", "Core/Init.lua", "BearaiProfessionMail.toc", "tests/item-rules-panel.lua", "tests/rule-drop.lua", "tests/behavior.lua", "scripts/test.cjs", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.0.md"],
+    "databaseSchema": 1,
+    "validation": { "npmTest": "pass-23-runtime-lua-files-and-three-client-suites", "deploymentSimulation": "pass-three-clients-27-files", "developmentPackages": "pass-three-clients", "diffCheck": "pass", "inGame": "pending" },
+    "deployed": true,
+    "deployedClient": "titan",
+    "published": false,
+    "nextSteps": ["verify-standalone-layout-and-settings-entry-in-game", "verify-user-rules-after-reload", "verify-three-client-source-and-mail-filter-behavior"]
+  },
+  "ruleItemDrop": {
+    "implemented": ["drag-or-click-item-slot", "cursor-item-ID-and-link-fallback", "icon-and-name-preview", "existing-professions-and-save", "manual-ID-entry", "asynchronous-preview-without-resetting-professions"],
+    "changedFiles": ["Core/Compatibility.lua", "UI/MainFrame.lua", "tests/mock.lua", "tests/rule-drop.lua", "scripts/test.cjs", "README.md", "README.en.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.0.md"],
+    "validation": { "npmTest": "pass-22-lua-files-and-three-client-suites", "cursorAndBagPreservationMocks": "pass", "inGame": "pending" },
+    "deployed": true,
+    "deployedClient": "titan",
+    "published": false,
+    "nextSteps": ["verify-real-bag-drag-and-cursor-return-on-three-clients", "verify-layout-tooltip-and-item-cache-refresh-in-game"]
+  },
+  "dataUpdate": {
+    "provider": "wago.tools / Blizzard client DB2",
+    "tables": ["SkillLineAbility", "SpellReagents"],
+    "sourceManifest": "data-sources/manifest.json",
+    "coverage": "data-sources/coverage.json",
+    "clients": [
+      { "flavor": "era", "build": "1.15.9.70576", "recipeRelations": 1570, "materials": 501, "professionRelations": 853 },
+      { "flavor": "titan", "build": "3.80.2.70522", "recipeRelations": 3576, "materials": 763, "professionRelations": 1374 },
+      { "flavor": "forever", "build": "1.60.1.70755", "recipeRelations": 2494, "materials": 589, "professionRelations": 1084 }
+    ],
+    "changedFiles": ["Data/Professions.lua", "Data/MaterialData.lua", "Data/Generated", "Data/Overrides", "data-sources", "scripts/data", "Modules/MaterialMatcher.lua", "UI/MaterialGrid.lua", "tests/material-data.lua", "scripts/test.cjs", "package.json", "BearaiProfessionMail.toc", "config/assets.json", "README.md", "README.en.md", "THIRD_PARTY_NOTICES.md", "CHANGELOG.md", "docs/PROGRESS.md", "docs/TESTING.md", "docs/releases/v0.4.0.md"],
+    "validation": {
+      "liveSourceFetch": "pass-six-csv-files",
+      "sourceHashesAndReproducibleGeneration": "pass",
+      "lua51AndMockSuites": "pass-22-runtime-lua-files-three-clients",
+      "scopedNameAndIDSearch": "pass-three-clients",
+      "deploymentSimulation": "pass-three-clients-26-files",
+      "developmentPackageValidation": "pass-three-clients",
+      "powerShellSyntax": "pass",
+      "inGame": "pending"
+    },
+    "deployedToRealClients": true,
+    "deployedClients": ["titan"],
+    "committed": false,
+    "published": false,
+    "referenceLibrary": { "repo": "refaim/LibCrafts-1.0", "commit": "e0cc17e13307ac0fc4bfd469b1e4d145b9eb6194", "tool": "github-kb", "embedded": false }
+  },
   "release": {
     "tag": "v0.3.2",
     "commit": "d7d3e4f",
@@ -18,10 +239,11 @@
     "foreverInGameValidation": "pending",
     "foreverExperimentalSha256": "21a514c8f6c750150fb036ca26091c242127ecbdc3856c8cf6e29620dce98e1c"
   },
-  "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever"] },
+  "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever", "titan"] },
   "clients": [
     { "folder": "_classic_era_", "version": "1.15.9.70576", "interface": 11509 },
-    { "folder": "_forever_", "version": "1.60.1.70755", "interface": 16001 }
+    { "folder": "_forever_", "version": "1.60.1.70755", "interface": 16001 },
+    { "folder": "_classic_titan_", "version": "3.80.2.70522", "interface": 38002 }
   ],
   "filesCreated": [
     ".gitignore", ".gitattributes", "BearaiProfessionMail.toc", "Core/Init.lua", "Core/Compatibility.lua", "Core/Database.lua",
@@ -33,20 +255,27 @@
     "docs/PROGRESS.md", "docs/TESTING.md", "docs/progress.json", "config/clients.json", "docs/VERSIONING.md", "docs/UI-REDESIGN.md",
     "config/assets.json", "scripts/Prepare-Logo.ps1", "Media/logo-bear-mail-v1.png", "Media/Logo.tga", "docs/assets/readme-banner.png",
     "README.en.md", "docs/assets/readme-hero.jpg", "LICENSE", "CHANGELOG.md", "docs/releases/v0.3.2.md",
-    "scripts/Package.ps1", "scripts/Test-Packages.ps1", "scripts/Publish-GitHub.ps1"
+    "scripts/Package.ps1", "scripts/Test-Packages.ps1", "scripts/Publish-GitHub.ps1",
+    "Data/TitanMaterials.lua", "tests/titan.lua", "tests/client-smoke.lua", "docs/releases/v0.4.0.md"
   ],
   "implemented": [
     "账号共享且客户端隔离的数据存储", "当前角色及专业自动记录", "其他账号角色手动增改删",
     "原生邮箱入口和展开收起界面", "可选收件人填充且保留玩家后续修改",
     "真实背包扫描", "多专业材料匹配和自定义规则", "搜索分类分页和背包 Tooltip",
     "真实槽位拖拽及状态防护", "双客户端部署脚本", "独立深色主题和控件",
-    "角色搜索滚动表格及职业等级", "多模式下拉筛选", "22 格真实物品网格及数量角标和独立附件行",
+    "角色搜索滚动表格及职业等级", "多模式下拉筛选", "三行33格真实物品网格及数量角标；附件仅显示在原生邮箱",
     "底部标签避让和空间回退", "菜单关闭清理及可移动窗口",
     "双击添加附件与右击撤回", "中英文名称和几何标识", "游戏设置角色管理页",
     "同名同服手动记录登录接管"
   ],
   "validation": {
-    "lua51Syntax": { "status": "pass", "fileCount": 16 },
+    "lua51Syntax": { "status": "pass", "fileCount": 26 },
+    "titanStartupProfessionMaterialLayoutAndMailMocks": "pass",
+    "threeClientDeploymentAndDevelopmentPackages": "pass",
+    "titanDeployment": {
+      "version": "0.4.0", "interface": 38002, "deployedAt": "2026-11-04T15:22:54+08:00",
+      "fileHashesVerified": 20, "workingTreeDirty": true, "inGameValidation": "pending"
+    },
     "ui030FilteringSettingsAndAttachmentBehaviorMocks": "pass",
     "ui031ResetFilterOnCharacterSwitch": "pass",
     "logo032": { "size": 128, "pngBytes": 28040, "deployedTgaBytes": 65554, "alphaAndHeaderCheck": "pass", "inGameDisplay": "pending" },
@@ -72,8 +301,8 @@
     },
     "classicEraInGameValidation": "verified-by-user-for-classic-era-1.15.9",
     "foreverInGameValidation": "pending",
-    "inGameLoad": "verified-by-user-classic-era",
-    "inGameVisualLayout": "user-reported-usable-classic-era",
+    "inGameLoad": "0.4.0-pending; 0.3.2-classic-era-verified-by-user",
+    "inGameVisualLayout": "0.4.0-pending; 0.3.2-classic-era-user-reported-usable",
     "previousVersionEvidence": "user-screenshot-confirms-0.1.0-visible-and-reports-layout-issues",
     "inGameNativeAttachmentDrag": "not-tested",
     "inGameProtectedOperations": "not-tested",
@@ -81,15 +310,16 @@
   },
   "git": { "initialized": true, "branch": "main", "commitCreated": true, "remoteConfigured": true, "remote": "https://github.com/bearaicn/BearaiProfessionMail.git", "giteeRemote": "https://gitee.com/bearaicn/BearaiProfessionMail.git", "originPushUrls": ["https://github.com/bearaicn/BearaiProfessionMail.git", "https://gitee.com/bearaicn/BearaiProfessionMail.git"], "strategy": "shared-main-with-client-configs" },
   "limitations": [
-    "材料种子表非完整配方库，尚未覆盖无限服专有材料",
+    "客户端记录可能包含隐藏或未开放配方，尚未建立服务器开放状态剔除层；泛用技能输入与非配方用品使用人工补充",
     "经典技能列表专业名称仅简体中文和英文",
     "仅整堆拖拽，未实现拆分数量",
     "经典旧世用户已反馈可用，未声明所有边界场景均覆盖",
     "不同 WoW 账号不自动共享数据，未登录角色不能离线刷新",
     "窗口移动位置当前不跨次保存，重新展开会重新定位",
-    "无限服兼容性待实测"
+    "三客户端本次数据与搜索改动待游戏回归；新数据尚未部署至真实客户端"
   ],
   "nextSteps": [
+    "完全重启时光服，核实 0.4.0 / Interface 38002 / titan，再按 TESTING.md 验收珠宝铭文与附件操作",
     "Gitee 已发布并更新说明；需补传 forever-experimental ZIP 与 SHA256SUMS-ALL.txt，era 不变",
     "记录 /bpm diag 与真实错误，修复后重新进行定向测试",
     "在无限服逐项复验兼容层和附件拖拽",

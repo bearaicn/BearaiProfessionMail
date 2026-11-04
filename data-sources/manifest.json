@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "provider": "wago.tools",
+  "sourceKind": "Blizzard client DB2 facts",
+  "clients": [
+    {
+      "flavor": "era",
+      "build": "1.15.9.70576",
+      "interface": 11509,
+      "retrievedAt": "2026-11-04T16:04:17.8459666+08:00",
+      "files": [
+        {
+          "table": "SkillLineAbility",
+          "path": "wago/era/SkillLineAbility.csv",
+          "url": "https://wago.tools/db2/SkillLineAbility/csv?build=1.15.9.70576",
+          "sha256": "5bb0ddce9943379976192bbb3cd6a438db47fd1abc2f642d89de500de19a02b3"
+        },
+        {
+          "table": "SpellReagents",
+          "path": "wago/era/SpellReagents.csv",
+          "url": "https://wago.tools/db2/SpellReagents/csv?build=1.15.9.70576",
+          "sha256": "1ea5744cfe62800c6d7b2f8818d510bd24574530fee8b798cd862f643584bc99"
+        }
+      ]
+    },
+    {
+      "flavor": "titan",
+      "build": "3.80.2.70522",
+      "interface": 38002,
+      "retrievedAt": "2026-11-04T16:04:26.2406155+08:00",
+      "files": [
+        {
+          "table": "SkillLineAbility",
+          "path": "wago/titan/SkillLineAbility.csv",
+          "url": "https://wago.tools/db2/SkillLineAbility/csv?build=3.80.2.70522",
+          "sha256": "de22eb3bf797d71199a26df0c6f5601b3e485988dd1a819e6d29ac67dde0ebd6"
+        },
+        {
+          "table": "SpellReagents",
+          "path": "wago/titan/SpellReagents.csv",
+          "url": "https://wago.tools/db2/SpellReagents/csv?build=3.80.2.70522",
+          "sha256": "1dc45a8ffecb0f44e2eb8b74534d42b065a939f9f2824f7b9943bf9f55dff2cb"
+        }
+      ]
+    },
+    {
+      "flavor": "forever",
+      "build": "1.60.1.70755",
+      "interface": 16001,
+      "retrievedAt": "2026-11-04T16:04:31.6488172+08:00",
+      "files": [
+        {
+          "table": "SkillLineAbility",
+          "path": "wago/forever/SkillLineAbility.csv",
+          "url": "https://wago.tools/db2/SkillLineAbility/csv?build=1.60.1.70755",
+          "sha256": "2853e5aeca9eac78afe4706c1420c55249b8ca1f61725682b65622f41204401b"
+        },
+        {
+          "table": "SpellReagents",
+          "path": "wago/forever/SpellReagents.csv",
+          "url": "https://wago.tools/db2/SpellReagents/csv?build=1.60.1.70755",
+          "sha256": "14158c80862eec0d6ba3a4d5bc94fe2e03930fcd2e967c70ebd51cafcba33643"
+        }
+      ]
+    }
+  ]
+}
