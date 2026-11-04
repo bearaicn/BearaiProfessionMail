@@ -1,8 +1,8 @@
 {
   "project": "BearaiProfessionMail",
   "version": "0.3.2",
-  "updatedAt": "2026-11-04T13:46:05+08:00",
-  "status": "implemented-awaiting-in-game-validation",
+  "updatedAt": "2026-11-04T14:16:33+08:00",
+  "status": "classic-era-released-gitee-awaiting-user-upload-forever-pending",
   "release": {
     "tag": "v0.3.2",
     "commit": "d7d3e4f",
@@ -88,7 +88,7 @@
     "无限服兼容性待实测"
   ],
   "nextSteps": [
-    "发布 v0.3.2 Classic Era，发行附件仅包含已获用户验证的经典旧世安装包",
+    "用户在已填写的 Gitee 发行表单上传 era ZIP 和 SHA256SUMS.txt 并点击创建；GitHub 已发布",
     "记录 /bpm diag 与真实错误，修复后重新进行定向测试",
     "在无限服逐项复验兼容层和附件拖拽",
     "按实际物品 ID 继续核实及补充材料映射"
