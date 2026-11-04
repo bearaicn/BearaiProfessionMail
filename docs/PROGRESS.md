@@ -4,6 +4,8 @@
 
 首个发行版准备：用户已选择 MIT，并明确反馈经典旧世已在游戏内验证可用；新增 LICENSE、CHANGELOG、双语玩家 README、v0.3.2 发行说明，以及按目标打包与校验脚本。发布使用附注 Tag，同步两边；本次只发布 Classic Era 1.15.9 / Interface 11509 安装包，无限服待验证。README 已移除本机路径及开发部署段落。
 
+v0.3.2 标签已同步 GitHub／Gitee，指向发行提交 d7d3e4f。GitHub Release 已公开发布经典旧世安装包（53,351 字节）与 SHA256SUMS.txt：https://github.com/bearaicn/BearaiProfessionMail/releases/tag/v0.3.2 。Gitee 标签、标题和双语说明已在浏览器填好，附件接口受扩展文件权限限制；用户明确愿意手工上传，已保留表单，尚未点击创建发行版。待上传同目录的 era ZIP 与校验文件后提交。本次不上传无限服包。
+
 Git 托管增加 Gitee 远端 https://gitee.com/bearaicn/BearaiProfessionMail.git；origin 保留 GitHub 拉取地址，并配置 GitHub＋Gitee 两个推送地址，后续相同提交同步推送两边。配置与失败处理见 VERSIONING.md。
 
 README.md 为中文，README.en.md 为完整英文说明，顶部可互相切换；两者使用 docs/assets/readme-hero.jpg（1086×362，74,248 字节）的深色背景居中 LOGO 头图。原透明横幅保留作设计参考。所有文档图片均不在游戏部署资源白名单中，插件版本保持 0.3.2。

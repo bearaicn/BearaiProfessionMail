@@ -3,6 +3,19 @@
   "version": "0.3.2",
   "updatedAt": "2026-11-04T13:46:05+08:00",
   "status": "implemented-awaiting-in-game-validation",
+  "release": {
+    "tag": "v0.3.2",
+    "commit": "d7d3e4f",
+    "target": "Classic Era 1.15.9 / Interface 11509",
+    "inGameValidation": "verified-by-user",
+    "license": "MIT",
+    "github": "https://github.com/bearaicn/BearaiProfessionMail/releases/tag/v0.3.2",
+    "githubStatus": "published-with-era-zip-and-sha256",
+    "giteeStatus": "form-filled-awaiting-user-upload-and-submit",
+    "assetsDirectory": ".tmp/releases/v0.3.2",
+    "eraZipBytes": 53351,
+    "foreverDistributed": false
+  },
   "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever"] },
   "clients": [
     { "folder": "_classic_era_", "version": "1.15.9.70576", "interface": 11509 },
