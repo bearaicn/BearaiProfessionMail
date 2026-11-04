@@ -1,0 +1,56 @@
+{
+  "project": "BearaiProfessionMail",
+  "version": "0.1.0",
+  "updatedAt": "2026-11-04T08:59:05+08:00",
+  "status": "implemented-awaiting-in-game-validation",
+  "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever"] },
+  "clients": [
+    { "folder": "D:\\Games\\World of Warcraft\\_classic_era_", "version": "1.15.9.70576", "interface": 11509 },
+    { "folder": "D:\\Games\\World of Warcraft\\_forever_", "version": "1.60.1.70755", "interface": 16001 }
+  ],
+  "filesCreated": [
+    ".gitignore", ".gitattributes", "BearaiProfessionMail.toc", "Core/Init.lua", "Core/Compatibility.lua", "Core/Database.lua",
+    "Data/ProfessionMaterials.lua", "Modules/CharacterManager.lua", "Modules/ProfessionManager.lua",
+    "Modules/InventoryScanner.lua", "Modules/MaterialMatcher.lua", "Modules/MailController.lua",
+    "UI/MainFrame.lua", "UI/CharacterList.lua", "UI/MaterialGrid.lua", "UI/MailButton.lua",
+    "scripts/Deploy.ps1", "scripts/Inspect-Clients.ps1", "scripts/Test-Deployment.ps1", "scripts/test.cjs",
+    "tests/mock.lua", "tests/behavior.lua", "package.json", "package-lock.json", "README.md",
+    "docs/PROGRESS.md", "docs/TESTING.md", "docs/progress.json", "config/clients.json", "docs/VERSIONING.md"
+  ],
+  "implemented": [
+    "账号共享且客户端隔离的数据存储", "当前角色及专业自动记录", "其他账号角色手动增改删",
+    "原生邮箱入口和展开收起界面", "可选收件人填充且保留玩家后续修改",
+    "真实背包扫描", "多专业材料匹配和自定义规则", "搜索分类分页和背包 Tooltip",
+    "真实槽位拖拽及状态防护", "双客户端部署脚本"
+  ],
+  "validation": {
+    "lua51Syntax": { "status": "pass", "fileCount": 13 },
+    "tocLoadWithMocks": "pass",
+    "dataCharacterProfessionInventoryMatcherMailAndUIBehaviorMocks": "pass",
+    "realClientPathInspection": "pass",
+    "realClientDeploymentPreview": "pass",
+    "isolatedDualClientDeploymentWithHashAndSentinel": "pass",
+    "perClientInterfaceAndDeploymentManifest": "pass",
+    "npmInstallAudit": { "status": "pass", "vulnerabilities": 0, "fengari": "0.1.5" },
+    "gameDirectoryDeployment": "not-performed",
+    "inGameLoad": "not-tested",
+    "inGameVisualLayout": "not-tested",
+    "inGameNativeAttachmentDrag": "not-tested",
+    "inGameProtectedOperations": "not-tested",
+    "inGameMailDelivery": "not-tested"
+  },
+  "git": { "initialized": true, "branch": "main", "commitCreated": true, "remoteConfigured": false, "strategy": "shared-main-with-client-configs" },
+  "limitations": [
+    "材料种子表非完整配方库，尚未覆盖无限服专有材料",
+    "经典技能列表专业名称仅简体中文和英文",
+    "仅整堆拖拽，未实现拆分数量",
+    "当前角色列表使用前后切换，未实现下拉搜索",
+    "未进入客户端，所有游戏行为和兼容性需实测"
+  ],
+  "nextSteps": [
+    "部署到经典旧世客户端并按 docs/TESTING.md 游戏验收",
+    "记录 /bpm diag 与真实错误，修复后重新进行定向测试",
+    "在无限服逐项复验兼容层和附件拖拽",
+    "按实际物品 ID 继续核实及补充材料映射"
+  ]
+}

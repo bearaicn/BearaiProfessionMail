@@ -1,0 +1,18 @@
+{
+  "Hardcore": {
+    "flavor": "era",
+    "folder": "_classic_era_",
+    "interface": 11509,
+    "observedVersion": "1.15.9.70576",
+    "observedAt": "2026-11-04",
+    "inGameValidation": "pending"
+  },
+  "Forever": {
+    "flavor": "forever",
+    "folder": "_forever_",
+    "interface": 16001,
+    "observedVersion": "1.60.1.70755",
+    "observedAt": "2026-11-04",
+    "inGameValidation": "pending"
+  }
+}
