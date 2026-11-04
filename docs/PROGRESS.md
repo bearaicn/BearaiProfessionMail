@@ -2,6 +2,8 @@
 
 更新日期：2026-11-04（Asia/Shanghai）。版本：0.3.2。
 
+用户要求同时发布无限服后，已从原 v0.3.2 标签重建 forever-experimental 包，GitHub 已补发并增加 SHA256SUMS-ALL.txt，原 era 包与标签均未修改。Gitee 已确认用户上传了早期 forever.zip／era／单包校验；发行标题和说明已更新为双目标，并注明优先使用新实验包、支持从 GitHub 下载。Gitee 新实验包与双包校验仍待手动补传。
+
 首个发行版准备：用户已选择 MIT，并明确反馈经典旧世已在游戏内验证可用；新增 LICENSE、CHANGELOG、双语玩家 README、v0.3.2 发行说明，以及按目标打包与校验脚本。发布使用附注 Tag，同步两边；本次只发布 Classic Era 1.15.9 / Interface 11509 安装包，无限服待验证。README 已移除本机路径及开发部署段落。
 
 v0.3.2 标签已同步 GitHub／Gitee，指向发行提交 d7d3e4f。GitHub Release 已公开发布经典旧世安装包（53,351 字节）与 SHA256SUMS.txt：https://github.com/bearaicn/BearaiProfessionMail/releases/tag/v0.3.2 。Gitee 标签、标题和双语说明已在浏览器填好，附件接口受扩展文件权限限制；用户明确愿意手工上传，已保留表单，尚未点击创建发行版。待上传同目录的 era ZIP 与校验文件后提交。本次不上传无限服包。

@@ -13,20 +13,20 @@
 | 客户端 | 支持状态 | 本次发行包 |
 | --- | --- | --- |
 | **经典旧世 Classic Era：1.15.9，Interface 11509** | **已通过用户游戏内验证** | `BearaiProfessionMail-0.3.2-era.zip` |
-| 无限服 WoW: Forever | 适配开发中，尚未游戏验证 | 本次不提供 |
+| **无限服 WoW: Forever：1.60.1，Interface 16001** | **实验性适配，尚未游戏内验证** | `BearaiProfessionMail-0.3.2-forever-experimental.zip` |
 
 经典旧世硬核服使用同一客户端系列；具体服务器邮寄限制以游戏为准。本次发行不面向正式服、周年服、其他怀旧资料片客户端，也不表示未来客户端版本已验证。
 
 ## 最新版本：v0.3.2
 
-2026-11-04，经典旧世发行版。
+2026-11-04，经典旧世已验证版＋无限服实验版。
 
 - 自动记录当前角色、职业、等级和专业，支持手动管理其他角色。
 - 可搜索角色表格、专业与材料筛选、背包格子和数量角标。
 - 双击添加单堆邮件附件、右击撤回，保留真实背包槽位拖拽；由玩家自行发送。
 - 切换目标角色后重置为按角色专业过滤，并返回第一页。
 - 游戏设置页、中英文品牌名称、轻量透明 LOGO。
-- MIT 许可证，提供精简安装包和 SHA256 校验。
+- MIT 许可证，提供两套客户端独立安装包与 `SHA256SUMS-ALL.txt`；无限服包明确标记 experimental，不代表已验证。
 
 下载：[GitHub Releases](https://github.com/bearaicn/BearaiProfessionMail/releases) · [Gitee Releases](https://gitee.com/bearaicn/BearaiProfessionMail/releases)
 
@@ -37,6 +37,8 @@
 1. 下载适用于 **经典旧世** 的 `BearaiProfessionMail-0.3.2-era.zip`。需要时对照同一发行版的 `SHA256SUMS.txt` 校验文件。
 2. 解压，将其中的 **`BearaiProfessionMail` 文件夹**放入经典旧世客户端的 `_classic_era_/Interface/AddOns/`。
 3. 完全退出并重新启动游戏，在角色选择界面的插件列表中启用本插件。
+
+无限服请改用 `BearaiProfessionMail-0.3.2-forever-experimental.zip`，安装到对应客户端的 `_forever_/Interface/AddOns/`。这是待游戏验证的实验包，请勿安装到经典旧世。校验两个推荐包请使用 `SHA256SUMS-ALL.txt`；早期 `forever.zip` 是试打包产物，请以 `forever-experimental.zip` 为准。
 
 请使用发行版中的安装 ZIP。平台自动生成的 “Source code” 是完整源码归档，不是精简安装包。
 

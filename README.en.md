@@ -13,13 +13,13 @@
 | Client | Status | Release package |
 | --- | --- | --- |
 | **Classic Era: 1.15.9, Interface 11509** | **User-reported in-game verification passed** | `BearaiProfessionMail-0.3.2-era.zip` |
-| WoW: Forever | Compatibility work in progress; not verified in game | Not included in this release |
+| **WoW: Forever: 1.60.1, Interface 16001** | **Experimental; not verified in game** | `BearaiProfessionMail-0.3.2-forever-experimental.zip` |
 
 Classic Hardcore uses the same client family; realm-specific mailing rules still apply. This release does not target Retail, Anniversary, other Classic expansions, or untested future client versions.
 
 ## Latest release: v0.3.2
 
-2026-11-04 · Classic Era release.
+2026-11-04 · Verified Classic Era package and experimental Forever package.
 
 - Automatic character, class, level, and profession tracking, plus manual character management.
 - Searchable character table, material filters, bag cells, and stack counts.
@@ -36,6 +36,8 @@ Full history: [CHANGELOG.md](CHANGELOG.md). Each release updates both READMEs an
 1. Download **`BearaiProfessionMail-0.3.2-era.zip` for Classic Era**. Optionally verify it against the release's `SHA256SUMS.txt`.
 2. Extract the enclosed **`BearaiProfessionMail` folder** into the Classic Era client's `_classic_era_/Interface/AddOns/` directory.
 3. Fully restart the game and enable the addon at character selection.
+
+For Forever, use `BearaiProfessionMail-0.3.2-forever-experimental.zip` and install it under `_forever_/Interface/AddOns/`. It is experimental and has not passed in-game verification. Use `SHA256SUMS-ALL.txt` for both recommended packages. The earlier `forever.zip` was a preliminary build; prefer `forever-experimental.zip`.
 
 Use the installation ZIP attached to the release. Automatically generated “Source code” archives are full repository snapshots, not the lightweight addon package.
 

@@ -2,19 +2,21 @@
   "project": "BearaiProfessionMail",
   "version": "0.3.2",
   "updatedAt": "2026-11-04T14:16:33+08:00",
-  "status": "classic-era-released-gitee-awaiting-user-upload-forever-pending",
+  "status": "github-dual-client-release-gitee-new-experimental-assets-pending",
   "release": {
     "tag": "v0.3.2",
     "commit": "d7d3e4f",
-    "target": "Classic Era 1.15.9 / Interface 11509",
+    "target": "Classic Era 1.15.9 /11509 verified; Forever 1.60.1 /16001 experimental",
     "inGameValidation": "verified-by-user",
     "license": "MIT",
     "github": "https://github.com/bearaicn/BearaiProfessionMail/releases/tag/v0.3.2",
-    "githubStatus": "published-with-era-zip-and-sha256",
-    "giteeStatus": "form-filled-awaiting-user-upload-and-submit",
+    "githubStatus": "published-with-era-and-tagged-forever-experimental-and-all-checksums",
+    "giteeStatus": "published-by-user-with-preliminary-forever; notes-updated; tagged-experimental-and-all-checksums-await-upload",
     "assetsDirectory": ".tmp/releases/v0.3.2",
     "eraZipBytes": 53351,
-    "foreverDistributed": false
+    "foreverDistributed": true,
+    "foreverInGameValidation": "pending",
+    "foreverExperimentalSha256": "21a514c8f6c750150fb036ca26091c242127ecbdc3856c8cf6e29620dce98e1c"
   },
   "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever"] },
   "clients": [
@@ -88,7 +90,7 @@
     "无限服兼容性待实测"
   ],
   "nextSteps": [
-    "用户在已填写的 Gitee 发行表单上传 era ZIP 和 SHA256SUMS.txt 并点击创建；GitHub 已发布",
+    "Gitee 已发布并更新说明；需补传 forever-experimental ZIP 与 SHA256SUMS-ALL.txt，era 不变",
     "记录 /bpm diag 与真实错误，修复后重新进行定向测试",
     "在无限服逐项复验兼容层和附件拖拽",
     "按实际物品 ID 继续核实及补充材料映射"

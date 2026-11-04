@@ -1,4 +1,4 @@
-param([ValidateSet('Hardcore','Forever','Both')][string]$Client = 'Hardcore')
+param([ValidateSet('Hardcore','Forever','Both')][string]$Client = 'Both')
 $ErrorActionPreference = 'Stop'
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $root = Split-Path -Parent $PSScriptRoot
@@ -10,7 +10,8 @@ $expected += @($toc -split '\r?\n' | Where-Object { $_ -match '\.lua$' })
 $expected += @(Get-Content -LiteralPath (Join-Path $root 'config/assets.json') -Raw | ConvertFrom-Json)
 $flavors = if ($Client -eq 'Both') { @('era','forever') } elseif ($Client -eq 'Forever') { @('forever') } else { @('era') }
 foreach ($flavor in $flavors) {
-    $file = Join-Path $output "BearaiProfessionMail-$version-$flavor.zip"
+    $suffix = if ($flavor -eq 'forever') { 'forever-experimental' } else { $flavor }
+    $file = Join-Path $output "BearaiProfessionMail-$version-$suffix.zip"
     $zip = [IO.Compression.ZipFile]::OpenRead($file)
     try {
         $entries = @($zip.Entries | Where-Object { $_.Name })
@@ -24,6 +25,13 @@ foreach ($flavor in $flavors) {
         try { $content = $reader.ReadToEnd() } finally { $reader.Dispose() }
         $interface = if ($flavor -eq 'era') { 11509 } else { 16001 }
         if ($content -notmatch "(?m)^## Interface: $interface\r?`$" -or $content -notmatch "## Version: $([regex]::Escape($version))") { throw '包内 TOC 错误。' }
+        $metadataEntry = $entries | Where-Object { $_.Name -eq 'release.json' }
+        $reader = [IO.StreamReader]::new($metadataEntry.Open())
+        try { $metadata = $reader.ReadToEnd() | ConvertFrom-Json } finally { $reader.Dispose() }
+        $releaseCommit = (& git -C $root rev-list -n 1 "v$version").Trim()
+        if ($metadata.gitCommit -ne $releaseCommit -or $metadata.workingTreeDirty -or $metadata.interface -ne $interface) {
+            throw '安装包来源不是干净的发布标签或目标不符。'
+        }
         foreach ($relative in $expected | Where-Object { $_ -match '\.(lua|tga)$' -or $_ -eq 'LICENSE' }) {
             $entry = $entries | Where-Object { $_.FullName.Replace('\','/') -eq "BearaiProfessionMail/$relative" }
             $stream = $entry.Open(); $sha = [Security.Cryptography.SHA256]::Create()
@@ -31,7 +39,8 @@ foreach ($flavor in $flavors) {
             if ($hash -ne (Get-FileHash -LiteralPath (Join-Path $root $relative)).Hash) { throw "包内文件哈希不一致：$relative" }
         }
     } finally { $zip.Dispose() }
-    $line = Get-Content -LiteralPath (Join-Path $output 'SHA256SUMS.txt') | Where-Object { $_.EndsWith([IO.Path]::GetFileName($file)) }
+    $sumFile = if (Test-Path -LiteralPath (Join-Path $output 'SHA256SUMS-ALL.txt')) { 'SHA256SUMS-ALL.txt' } else { 'SHA256SUMS.txt' }
+    $line = Get-Content -LiteralPath (Join-Path $output $sumFile) | Where-Object { $_.EndsWith([IO.Path]::GetFileName($file)) }
     if (-not $line -or ($line -split ' ')[0] -ne (Get-FileHash -LiteralPath $file).Hash.ToLowerInvariant()) { throw '安装包 SHA256 不符。' }
     Write-Output "PASS: $flavor 安装包结构、版本、源文件与 ZIP 哈希、LICENSE"
 }
