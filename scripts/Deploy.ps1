@@ -14,7 +14,9 @@ $tocContent = Get-Content -LiteralPath $toc -Raw
 $version = [regex]::Match($tocContent, '(?m)^## Version:\s*([^\r\n]+)').Groups[1].Value.Trim()
 if (-not $version) { throw 'TOC 缺少插件版本。' }
 $files = @('BearaiProfessionMail.toc') + @(Get-Content -LiteralPath $toc | Where-Object { $_ -match '\.lua$' })
-# 严格白名单，只复制 TOC 和其显式声明的 Lua；不删除目标目录中的任何文件。
+$assets = @(Get-Content -LiteralPath (Join-Path $source 'config\assets.json') -Raw | ConvertFrom-Json)
+$files += $assets
+# 严格白名单，只复制 TOC、Lua 和显式资源；不删除目标目录中的任何文件。
 foreach ($file in $files) {
     if ($file -match '\.\.|^[/\\]|:') { throw "TOC 中存在非法路径：$file" }
     if (-not (Test-Path -LiteralPath (Join-Path $source $file))) { throw "缺少文件：$file" }

@@ -1,7 +1,7 @@
 {
   "project": "BearaiProfessionMail",
-  "version": "0.1.0",
-  "updatedAt": "2026-11-04T08:59:05+08:00",
+  "version": "0.3.2",
+  "updatedAt": "2026-11-04T13:46:05+08:00",
   "status": "implemented-awaiting-in-game-validation",
   "database": { "savedVariable": "BearaiProfessionMailDB", "schema": 1, "profiles": ["era", "forever"] },
   "clients": [
@@ -12,19 +12,29 @@
     ".gitignore", ".gitattributes", "BearaiProfessionMail.toc", "Core/Init.lua", "Core/Compatibility.lua", "Core/Database.lua",
     "Data/ProfessionMaterials.lua", "Modules/CharacterManager.lua", "Modules/ProfessionManager.lua",
     "Modules/InventoryScanner.lua", "Modules/MaterialMatcher.lua", "Modules/MailController.lua",
-    "UI/MainFrame.lua", "UI/CharacterList.lua", "UI/MaterialGrid.lua", "UI/MailButton.lua",
+    "UI/Theme.lua", "UI/Widgets.lua", "UI/MainFrame.lua", "UI/CharacterList.lua", "UI/SettingsPanel.lua", "UI/MaterialGrid.lua", "UI/MailButton.lua",
     "scripts/Deploy.ps1", "scripts/Inspect-Clients.ps1", "scripts/Test-Deployment.ps1", "scripts/test.cjs",
-    "tests/mock.lua", "tests/behavior.lua", "package.json", "package-lock.json", "README.md",
-    "docs/PROGRESS.md", "docs/TESTING.md", "docs/progress.json", "config/clients.json", "docs/VERSIONING.md"
+    "tests/mock.lua", "tests/behavior.lua", "tests/features.lua", "package.json", "package-lock.json", "README.md",
+    "docs/PROGRESS.md", "docs/TESTING.md", "docs/progress.json", "config/clients.json", "docs/VERSIONING.md", "docs/UI-REDESIGN.md",
+    "config/assets.json", "scripts/Prepare-Logo.ps1", "Media/logo-bear-mail-v1.png", "Media/Logo.tga", "docs/assets/readme-banner.png",
+    "README.en.md", "docs/assets/readme-hero.jpg"
   ],
   "implemented": [
     "账号共享且客户端隔离的数据存储", "当前角色及专业自动记录", "其他账号角色手动增改删",
     "原生邮箱入口和展开收起界面", "可选收件人填充且保留玩家后续修改",
     "真实背包扫描", "多专业材料匹配和自定义规则", "搜索分类分页和背包 Tooltip",
-    "真实槽位拖拽及状态防护", "双客户端部署脚本"
+    "真实槽位拖拽及状态防护", "双客户端部署脚本", "独立深色主题和控件",
+    "角色搜索滚动表格及职业等级", "多模式下拉筛选", "22 格真实物品网格及数量角标和独立附件行",
+    "底部标签避让和空间回退", "菜单关闭清理及可移动窗口",
+    "双击添加附件与右击撤回", "中英文名称和几何标识", "游戏设置角色管理页",
+    "同名同服手动记录登录接管"
   ],
   "validation": {
-    "lua51Syntax": { "status": "pass", "fileCount": 13 },
+    "lua51Syntax": { "status": "pass", "fileCount": 16 },
+    "ui030FilteringSettingsAndAttachmentBehaviorMocks": "pass",
+    "ui031ResetFilterOnCharacterSwitch": "pass",
+    "logo032": { "size": 128, "pngBytes": 28040, "deployedTgaBytes": 65554, "alphaAndHeaderCheck": "pass", "inGameDisplay": "pending" },
+    "ui020TargetedBehaviorMocks": "pass",
     "tocLoadWithMocks": "pass",
     "dataCharacterProfessionInventoryMatcherMailAndUIBehaviorMocks": "pass",
     "realClientPathInspection": "pass",
@@ -32,23 +42,37 @@
     "isolatedDualClientDeploymentWithHashAndSentinel": "pass",
     "perClientInterfaceAndDeploymentManifest": "pass",
     "npmInstallAudit": { "status": "pass", "vulnerabilities": 0, "fengari": "0.1.5" },
-    "gameDirectoryDeployment": "not-performed",
-    "inGameLoad": "not-tested",
-    "inGameVisualLayout": "not-tested",
+    "gameDirectoryDeployment": "hardcore-deployed-forever-not-performed",
+    "hardcoreDeployment": {
+      "version": "0.3.2",
+      "interface": 11509,
+      "gitCommit": "f81cb5491af63213a9c5ebd644d88f3942d3dbc6",
+      "deployedAt": "2026-11-04T13:46:05+08:00",
+      "workingTreeDirty": true,
+      "previousInstallBackup": ".tmp/backups/0.3.1-20261104-134559",
+      "fileHashesVerified": 18,
+      "installedBytesIncludingManifest": 124260,
+      "inGameValidation": "pending"
+    },
+    "inGameLoad": "not-tested-for-0.3.2",
+    "inGameVisualLayout": "not-tested-for-0.3.2",
+    "previousVersionEvidence": "user-screenshot-confirms-0.1.0-visible-and-reports-layout-issues",
     "inGameNativeAttachmentDrag": "not-tested",
     "inGameProtectedOperations": "not-tested",
     "inGameMailDelivery": "not-tested"
   },
-  "git": { "initialized": true, "branch": "main", "commitCreated": true, "remoteConfigured": false, "strategy": "shared-main-with-client-configs" },
+  "git": { "initialized": true, "branch": "main", "commitCreated": true, "remoteConfigured": true, "remote": "https://github.com/bearaicn/BearaiProfessionMail.git", "strategy": "shared-main-with-client-configs" },
   "limitations": [
     "材料种子表非完整配方库，尚未覆盖无限服专有材料",
     "经典技能列表专业名称仅简体中文和英文",
     "仅整堆拖拽，未实现拆分数量",
-    "当前角色列表使用前后切换，未实现下拉搜索",
-    "未进入客户端，所有游戏行为和兼容性需实测"
+    "0.3.0 的实际视觉、设置页、双击和右击附件操作待游戏验证",
+    "不同 WoW 账号不自动共享数据，未登录角色不能离线刷新",
+    "窗口移动位置当前不跨次保存，重新展开会重新定位",
+    "当前版本的游戏行为和兼容性需实测"
   ],
   "nextSteps": [
-    "部署到经典旧世客户端并按 docs/TESTING.md 游戏验收",
+    "0.3.2 已部署至经典旧世，重启后按 docs/TESTING.md 验证透明 LOGO、设置页及附件交互",
     "记录 /bpm diag 与真实错误，修复后重新进行定向测试",
     "在无限服逐项复验兼容层和附件拖拽",
     "按实际物品 ID 继续核实及补充材料映射"

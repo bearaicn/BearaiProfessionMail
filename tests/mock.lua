@@ -26,13 +26,33 @@ function methods:Hide()
     if old and self.hooks.OnHide then self.hooks.OnHide(self) end
 end
 function methods:SetShown(value) if value then self:Show() else self:Hide() end end
-function methods:GetHeight() return 900 end
+function methods:GetHeight() return self.height or 900 end
+function methods:GetWidth() return self.width or 1400 end
+function methods:GetEffectiveScale() return self.scale or 1 end
+function methods:GetRight() return self.right or 400 end
+function methods:GetLeft() return self.left or 0 end
+function methods:SetSize(width, height) self.width, self.height = width, height end
+function methods:SetWidth(width) self.width = width end
+function methods:SetHeight(height) self.height = height end
+function methods:SetScale(scale) self.scale = scale end
+function methods:SetPoint(...) self.point = {...} end
+function methods:SetBackdropColor(...) self.background = {...} end
+function methods:SetBackdropBorderColor(...) self.border = {...} end
+function methods:SetEnabled(enabled) self.enabled = enabled end
+function methods:SetFont(...) self.font = {...} end
+function methods:SetTextColor(...) self.textColor = {...} end
+function methods:SetParent(parent) self.parent = parent end
+function methods:GetParent() return self.parent end
+function methods:GetFrameStrata() return self.strata or (self.parent and self.parent:GetFrameStrata()) or 'MEDIUM' end
+function methods:SetFrameStrata(value) self.strata = value end
 function methods:GetFrameLevel() return 10 end
 local function noop() end
-for _, name in ipairs({ 'SetSize','SetPoint','SetWidth','SetJustifyH','SetAutoFocus','SetMaxLetters',
-    'ClearFocus','SetBackdrop','EnableMouse','SetClampedToScreen','SetScale','SetFrameStrata',
-    'SetFrameLevel','SetEnabled','ClearAllPoints','RegisterForDrag','SetTexture','SetDesaturated',
-    'SetHighlightTexture','SetOwner','SetBagItem','AddLine' }) do methods[name] = noop end
+for _, name in ipairs({ 'SetJustifyH','SetAutoFocus','SetMaxLetters',
+    'ClearFocus','SetBackdrop','EnableMouse','SetClampedToScreen',
+    'SetFrameLevel','ClearAllPoints','RegisterForDrag','SetTexture','SetDesaturated',
+    'SetHighlightTexture','SetOwner','SetBagItem','AddLine','SetFontObject','SetTextInsets',
+    'SetWordWrap','SetAllPoints','EnableMouseWheel','SetTexCoord','SetMovable','StartMoving','StopMovingOrSizing',
+    'SetVertexColor','SetRotation','RegisterForClicks','SetSendMailItem' }) do methods[name] = noop end
 function CreateFrame(kind, name, parent, template)
     local frame = setmetatable({ scripts = {}, hooks = {}, events = {}, shown = true, parent = parent }, { __index = methods })
     if name then _G[name] = frame end
@@ -49,6 +69,7 @@ function GetBuildInfo() return '1.15.9', '70576', '', TEST_INTERFACE or 11509 en
 function UnitName() return '测试角色' end
 function GetRealmName() return '测试服' end
 function UnitClass() return '法师', 'MAGE' end
+function UnitLevel() return TEST_LEVEL or 42 end
 function time() return 1793750400 end
 function InCombatLockdown() return COMBAT or false end
 function CursorHasItem() return CURSOR or false end
@@ -71,3 +92,44 @@ function GetSkillLineInfo(i)
 end
 function ExpandSkillHeader() SKILLS_COLLAPSED = false end
 function CollapseSkillHeader() SKILLS_COLLAPSED = true end
+MailFrame.numTabs = 3
+for index = 1, 3 do
+    local tab = CreateFrame('Button', 'MailFrameTab' .. index, MailFrame)
+    tab.right = 50 + index * 75
+end
+ATTACHMENTS_MAX_SEND = 12
+MAIL_ITEMS = {}
+function HasSendMailItem(index) return MAIL_ITEMS[index] ~= nil end
+function GetSendMailItem(index)
+    local row = MAIL_ITEMS[index]
+    if row then return row.name, row.itemID, row.icon, row.count, row.quality end
+end
+function GetSendMailItemLink(index) return MAIL_ITEMS[index] and MAIL_ITEMS[index].link end
+function ClickSendMailItemButton(index, remove)
+    if remove then
+        if MAIL_REJECT_REMOVE then return end
+        local row = MAIL_ITEMS[index]
+        if row then
+            local slot = row.sourceSlot or 1
+            while BAGS[0][slot] do slot = slot + 1 end
+            BAGS[0][slot] = { itemID = row.itemID, stackCount = row.count, iconFileID = row.icon, hyperlink = row.link }
+        end
+        MAIL_ITEMS[index] = nil
+        return
+    end
+    assert(CURSOR and PICKED, '附加操作必须有真实背包光标')
+    assert(not MAIL_ITEMS[index], '禁止替换已有附件')
+    local bag, slot = PICKED[1], PICKED[2]
+    local info = BAGS[bag][slot]
+    MAIL_ITEMS[index] = { itemID = info.itemID, count = info.stackCount, name = '模拟附件', icon = info.iconFileID, link = info.hyperlink, sourceSlot = slot }
+    BAGS[bag][slot] = nil
+    CURSOR = false
+end
+Settings = {
+    RegisterCanvasLayoutCategory = function(panel, name)
+        SETTINGS_REGISTERED = panel
+        return { GetID = function() return 123 end }
+    end,
+    RegisterAddOnCategory = function() end,
+    OpenToCategory = function(id) SETTINGS_OPENED = id end,
+}

@@ -1,8 +1,9 @@
 ## Interface: 11509, 16001
-## Title: BearaiProfessionMail
+## Title: 熊智专业邮寄助手 / BearAI Profession Mail
 ## Notes: 专业材料邮寄助手（由玩家在原生邮箱发送）
 ## Author: BearAI
-## Version: 0.1.0
+## Version: 0.3.2
+## IconTexture: Interface\AddOns\BearaiProfessionMail\Media\Logo.tga
 ## SavedVariables: BearaiProfessionMailDB
 Core/Init.lua
 Core/Compatibility.lua
@@ -13,7 +14,10 @@ Modules/CharacterManager.lua
 Modules/InventoryScanner.lua
 Modules/MaterialMatcher.lua
 Modules/MailController.lua
+UI/Theme.lua
+UI/Widgets.lua
 UI/MainFrame.lua
 UI/CharacterList.lua
+UI/SettingsPanel.lua
 UI/MaterialGrid.lua
 UI/MailButton.lua

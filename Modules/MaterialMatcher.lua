@@ -14,10 +14,14 @@ function M.SetRule(id, professions)
     return true
 end
 function M.Match(row, professions, filter, search)
-    if row.bound then return false end
-    local matched = false
-    for id in pairs(M.Rule(row.itemID)) do
-        if professions[id] and (not filter or filter == id) then matched = true; break end
+    if not ns.Compatibility.IsMailable(row) then return false end
+    local matched = filter == -1 or (filter == -2 and ns.Compatibility.IsMaterial(row))
+    if filter and filter > 0 then
+        matched = M.Rule(row.itemID)[filter] == true
+    elseif not filter or filter == 0 then
+        for id in pairs(M.Rule(row.itemID)) do
+            if professions and professions[id] then matched = true; break end
+        end
     end
     if not matched then return false end
     search = string.lower(search or "")

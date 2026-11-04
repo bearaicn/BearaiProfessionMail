@@ -2,6 +2,8 @@ $ErrorActionPreference = 'Stop'
 $source = Split-Path -Parent $PSScriptRoot
 $sourceToc = Get-Content -LiteralPath (Join-Path $source 'BearaiProfessionMail.toc') -Raw
 $expectedVersion = [regex]::Match($sourceToc, '(?m)^## Version:\s*([^\r\n]+)').Groups[1].Value.Trim()
+$expectedFileCount = 2 + @($sourceToc -split '\r?\n' | Where-Object { $_ -match '\.lua$' }).Count
+$expectedFileCount += @(Get-Content -LiteralPath (Join-Path $source 'config\assets.json') -Raw | ConvertFrom-Json).Count
 $fixture = Join-Path $source ('.tmp\deploy-' + [guid]::NewGuid().ToString('N'))
 foreach ($client in @('_classic_era_', '_forever_')) {
     New-Item -ItemType Directory -Path (Join-Path $fixture "$client\Interface\AddOns\OtherAddon") -Force | Out-Null
@@ -15,7 +17,7 @@ if (Test-Path -LiteralPath (Join-Path $fixture '_classic_era_\Interface\AddOns\B
 foreach ($client in @('_classic_era_', '_forever_')) {
     $target = Join-Path $fixture "$client\Interface\AddOns\BearaiProfessionMail"
     $files = @(Get-ChildItem -LiteralPath $target -Recurse -File)
-    if ($files.Count -ne 15) { throw "部署文件数量异常：$($files.Count)" }
+    if ($files.Count -ne $expectedFileCount) { throw "部署文件数量异常：$($files.Count)" }
     $expectedInterface = if ($client -eq '_classic_era_') { 11509 } else { 16001 }
     $deployedToc = Get-Content -LiteralPath (Join-Path $target 'BearaiProfessionMail.toc') -Raw
     if ($deployedToc -notmatch "(?m)^## Interface: $expectedInterface\r?`$") { throw '目标 TOC Interface 错误。' }
@@ -29,5 +31,8 @@ foreach ($client in @('_classic_era_', '_forever_')) {
         throw '其他插件文件被改变。'
     }
     if (Test-Path -LiteralPath (Join-Path $target 'tests')) { throw '部署夹带开发文件。' }
+    if (Test-Path -LiteralPath (Join-Path $target 'Media\logo-bear-mail-v1.png')) { throw '部署不应夹带 PNG 参考文件。' }
+    $texture = Join-Path $target 'Media\Logo.tga'
+    if (-not (Test-Path -LiteralPath $texture) -or (Get-Item -LiteralPath $texture).Length -gt 70000) { throw '纹理缺失或超出体积预算。' }
 }
 Write-Output "PASS：双客户端部署模拟、预览零写入、独立 Interface、部署清单与哈希校验、其他插件哨兵未改动。测试目录：$fixture"

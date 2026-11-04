@@ -11,6 +11,7 @@ function ns.Refresh()
         ns.CharacterList.Refresh()
         ns.MaterialGrid.Refresh()
     end
+    if ns.SettingsPanel then ns.SettingsPanel.Refresh() end
 end
 local function updateCharacter()
     local ok, err = ns.CharacterManager.RecordCurrent()
@@ -24,14 +25,19 @@ ns.events:SetScript("OnEvent", function(_, event, arg)
         return
     elseif event == "PLAYER_LOGIN" then
         updateCharacter()
+        ns.SettingsPanel.Register()
         SLASH_BEARAIPROFESSIONMAIL1 = "/bpm"
         SlashCmdList.BEARAIPROFESSIONMAIL = function(message)
-            if message == "diag" then ns.Print(ns.Compatibility.Diagnostics())
+            if message == "settings" then ns.SettingsPanel.Open()
+            elseif message == "diag" then ns.Print(ns.Compatibility.Diagnostics())
             elseif ns.MailController.IsOpen() then ns.MailButton.Toggle()
             else ns.Print("请先打开原生邮箱；/bpm diag 可查看兼容信息。") end
         end
-    elseif event == "SKILL_LINES_CHANGED" then
+    elseif event == "SKILL_LINES_CHANGED" or event == "PLAYER_LEVEL_UP" then
         updateCharacter()
+        if event == "PLAYER_LEVEL_UP" and type(arg) == "number" and ns.currentKey then
+            ns.db.characters[ns.currentKey].level = arg
+        end
         ns.Refresh()
     elseif event == "MAIL_SHOW" then
         ns.MailController.open = true
@@ -45,7 +51,7 @@ ns.events:SetScript("OnEvent", function(_, event, arg)
     end
 end)
 for _, event in ipairs({ "ADDON_LOADED", "PLAYER_LOGIN", "SKILL_LINES_CHANGED", "MAIL_SHOW",
-    "MAIL_CLOSED", "BAG_UPDATE_DELAYED", "GET_ITEM_INFO_RECEIVED", "MAIL_SEND_INFO_UPDATE",
+    "MAIL_CLOSED", "BAG_UPDATE_DELAYED", "GET_ITEM_INFO_RECEIVED", "MAIL_SEND_INFO_UPDATE", "PLAYER_LEVEL_UP",
     "PLAYER_REGEN_ENABLED" }) do
     ns.events:RegisterEvent(event)
 end
