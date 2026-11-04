@@ -6,7 +6,13 @@
     "tag": "v0.5.6",
     "prerelease": true,
     "validation": "pass-npm-test-26-lua-files-three-client-deployment-isolation-and-diff-check",
-    "status": "prepared-awaiting-commit-tag-packages-and-publication"
+    "status": "published-both-platforms-all-three-packages-and-checksums",
+    "releaseCommit": "3ef9aa1f12f1f43d002faa50f20beaf1711bc077",
+    "github": "https://github.com/bearaicn/BearaiProfessionMail/releases/tag/v0.5.6",
+    "gitee": "https://gitee.com/bearaicn/BearaiProfessionMail/releases/tag/v0.5.6",
+    "githubAssets": "four-uploaded-api-verified",
+    "giteeAssets": "four-downloaded-and-sha256-matched-local",
+    "manualUploadRequired": false
   },
   "foreverDeployment056": {
     "deployedAt": "2026-11-04T22:27:07+08:00",

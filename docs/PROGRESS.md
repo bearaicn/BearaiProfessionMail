@@ -1,6 +1,14 @@
 # 开发进度
 
-更新日期：2026-11-04（Asia/Shanghai）。当前版本：0.5.6；本次准备三客户端v0.5.6测试发行，平台结果将在发布后追加记录。
+更新日期：2026-11-04（Asia/Shanghai）。最新发行版：v0.5.6（三客户端测试版），GitHub／Gitee均已发布。
+
+## v0.5.6 发布结果
+
+- 发行提交3ef9aa1f12f1f43d002faa50f20beaf1711bc077，附注标签v0.5.6已同步GitHub与Gitee，未移动旧标签；三个ZIP从该干净提交生成并校验通过。
+- GitHub：https://github.com/bearaicn/BearaiProfessionMail/releases/tag/v0.5.6 ，已公开标记prerelease，era、forever-experimental、titan-experimental及SHA256SUMS-ALL.txt全部上传，API返回四个附件均uploaded。
+- Gitee：https://gitee.com/bearaicn/BearaiProfessionMail/releases/tag/v0.5.6 ，已公开标记预览版本，双语说明和四个附件均已发布。上传工具虽返回文件权限错误，实际附件已完成上传；随后从Gitee下载三个ZIP和校验文件，SHA256全部与本地发布文件一致，无需用户补传。
+- npm test、26个Lua语法、三客户端部署隔离、三套安装包内容／来源／Interface／许可证／哈希检查通过。游戏验证状态分别标注，未将模拟等同游戏通过。
+- 本地安装包位于.tmp/releases/v0.5.6，版本保持0.5.6。后续继续各客户端游戏回归；标签固定在发行提交，发布结果记录另作docs提交。
 
 ## v0.5.6 三客户端发布准备
 
